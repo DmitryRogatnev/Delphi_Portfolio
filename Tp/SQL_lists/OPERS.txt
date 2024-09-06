@@ -1,0 +1,15 @@
+/*Список операций*/
+---------------------
+/*BeginColumns Name_Oper EndColumns*/
+/*BeginTitles Операция EndTitles*/
+--------------------
+
+Select t.Id Oper_Id,
+       t.Code_Oper,
+       t.Name_Oper,
+       t.Iot_Oper, 
+       t.Tt_Oper Tt_Oper 
+From   Ogt.V_Spr_Oper t 
+Where  /*BeginFilter*/ (1=1) /*EndFilter*/
+       /*BeginKeyword*/ And ( Upper( t.Name_Oper ) like '%'||Upper( :V_Keyword )||'%'
+                               Or Upper( t.Code_Oper ) like '%'||Upper( :V_Keyword )||'%' ) /*EndKeyword*/

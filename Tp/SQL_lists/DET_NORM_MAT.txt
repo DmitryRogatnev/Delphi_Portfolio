@@ -1,0 +1,19 @@
+/*Список состава сборки*/
+---------------------
+/*BeginColumns
+Code_Ceh;Name_Vidrab;Mat_Name;Norma_Min;Ed_Name
+EndColumns*/
+
+/*BeginTitles
+Цех;Вид работ;Наименование;Норма расх.;Ед. изм.
+EndTitles*/
+--------------------
+Select Id_Mat Mat_Id, 
+       a.Code_Ceh, 
+       a.Name_Mat Mat_Name, 
+       a.Norma Norma_Min, 
+       a.Id_Ed Ed_Id, 
+       a.Code_Ed Ed_Name, 
+       a.Name_Vidrab 
+From   Ogt.V_Norm_Mat a
+Where  /*BeginFilter*/ (1=1) /*EndFilter*/

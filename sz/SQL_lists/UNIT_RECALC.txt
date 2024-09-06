@@ -1,0 +1,60 @@
+/*Список единиц измерения для пересчета*/
+---------------------
+/*COLUMNS_START
+<0>Name_Mat</0><1>Parent_Unit_Sname</1><2>Child_Unit_Sname</2><3>Recalc_Coeff</3><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Наименование материала</0><1>Из</1><2>В</2><3>Коэффициент пересчета</3><end>
+TITLES_END*/
+--------------------
+
+Select *
+From  (
+Select m.Id_Mat,
+			 m.Kodm_Mat,
+			 m.Name_Mat,
+			 t.Prnt_Unit_Id,
+			 up.Unit_Code Parent_Unit_Code,
+			 up.Unit_SName Parent_Unit_Sname, 
+			 t.Child_Unit_Id,
+			 uc.Unit_Code Child_Unit_Code,
+			 uc.Unit_SName Child_Unit_Sname,
+			 'spr_matx' SourceFlag,
+			 t.Recalc_Coeff
+From   Stp.v_Spr_Units_Recalc t
+Left   Join Stp.v_Spr_Units up
+On     up.Id_Unit=t.Prnt_Unit_Id
+			 And Nvl(up.Date_Expitation, Sysdate)<=Sysdate
+Left   Join Stp.v_Spr_Units uc
+On     uc.Id_Unit=t.Child_Unit_Id
+			 And Nvl(uc.Date_Expitation, Sysdate)<=Sysdate
+Left   Join Ogt.v_Spr_Materials m
+On     m.Code_Ed = up.unit_Code	
+
+Union All
+
+Select Null,
+			 m22.kod,
+			 m22.NMAT||' '||m22.NSR||' '||m22.GOST,
+			 t.Prnt_Unit_Id,
+			 up.Unit_Code Parent_Unit_Code,
+			 up.Unit_SName Parent_Unit_Sname, 
+			 t.Child_Unit_Id,
+			 uc.Unit_Code Child_Unit_Code,
+			 uc.Unit_SName Child_Unit_Sname,
+			 'm22' SourceFlag,
+			 t.Recalc_Coeff
+From   Stp.v_Spr_Units_Recalc t
+Left   Join Stp.v_Spr_Units up
+On     up.Id_Unit=t.Prnt_Unit_Id
+			 And Nvl(up.Date_Expitation, Sysdate)<=Sysdate
+Left   Join Stp.v_Spr_Units uc
+On     uc.Id_Unit=t.Child_Unit_Id
+			 And Nvl(uc.Date_Expitation, Sysdate)<=Sysdate
+Left   Join Sveta.M22 m22		 
+On     m22.kei=up.unit_Code) a
+Where  /*FILTER_START*/ (1=1) /*FILTER_END*/ 
+        /*KEYWORD_START*/ And ( Upper(a.Kodm_Mat) like '%'||Upper(:V_Keyword)||'%'
+        Or Upper(a.Name_Mat) like '%'||Upper(:V_Keyword)||'%'
+        Or Upper(a.Child_Unit_Code) like '%'||Upper(:V_Keyword)||'%' ) /*KEYWORD_END*/ 

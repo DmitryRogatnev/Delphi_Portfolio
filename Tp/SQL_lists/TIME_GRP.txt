@@ -1,0 +1,15 @@
+/*Список названий групп для расчета*/
+---------------------
+/*BeginColumns
+Group_Name
+EndColumns*/
+
+/*BeginTitles
+Группа
+EndTitles*/
+--------------------
+Select a.Id Group_Id,
+       a.Group_Name
+From   Ogt.TP_OPER_GROUPS_NAME a
+Where  /*BeginFilter*/ (1=1) /*EndFilter*/
+	

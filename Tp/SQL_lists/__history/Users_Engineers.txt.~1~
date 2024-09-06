@@ -1,0 +1,27 @@
+/*Список инженеров технологов */
+---------------------
+/*COLUMNS_START
+<0>Dep_Code</0><1>User_Name</1><2>User_Prof</2><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Цех/Отдел</0><1>ФИО</1><2>Должность</2><end>
+TITLES_END*/
+--------------------
+
+Select Distinct
+       dm.User_Id,
+       d.dep_Code,
+			 dm.dep_Mmbr_Pstn_Id,
+       dmps.Position_Name,
+			 Stp.Pkg_User.F_Get_User_Fio(dm.User_Id) User_Name,
+       Stp.Pkg_User.F_Get_User_Prof(dm.User_Id) User_Prof
+From   Stp.v_Dep_Mmbrs dm
+Left   Join Stp.v_Dep_Mmbr_Pstns dmps
+On     dmps.Id_dep_Mmbr_Pstn=dm.dep_Mmbr_Pstn_Id
+Left   Join Stp.v_Deps d
+On     d.id_dep=dm.dep_Id
+       And Nvl(d.Date_Expitation, Sysdate)<=Sysdate
+Where  dm.dep_Mmbr_Pstn_Id=201
+Order  By d.dep_Code
+	 

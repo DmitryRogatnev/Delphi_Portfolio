@@ -1,0 +1,16 @@
+/*Список примечаний к переходам*/
+---------------------
+/*COLUMNS_START
+<0>TT</0><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Техн. требования к переходам</0><end>
+TITLES_END*/
+--------------------
+
+Select Distinct Trim(t.Tt_Per) TT 
+From   Ogt.V_Tp_Ok_Per_Dlp t
+Where  t.Tt_Per Is Not Null 
+       And  /*FILTER_START*/ (1=1) /*FILTER_END*/
+	 

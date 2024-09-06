@@ -1,0 +1,28 @@
+Join (  Select p.Doc_Rout_Id
+        From   Src.v_Doc_Rout_Points p
+	Left   Join Src.v_Doc_Rout_Point_Pstns ps
+	On     ps.Doc_Rout_Point_Id=p.Id_Doc_Rout_Point
+	Left   Join Src.v_Doc_Rout_Point_Pstn_Ds dps
+	On     dps.Doc_Rout_Point_Pstn_Id=ps.Id_Doc_Rout_Point_Pstn
+	Left   Join Src.v_Doc_Rout_Point_Pstn_Us ups
+	On     ups.DOC_ROUT_POINT_PSTN_ID=ps.Id_Doc_Rout_Point_Pstn
+	Join   Stp.v_Dep_Mmbrs dm
+	On     ((dm.dep_Id=dps.Dep_Id And dm.dep_Mmbr_Pstn_Id=ps.Dep_Mmbr_Pstn_Id)
+	         or  dm.User_Id=ups.USER_ID)
+		And dm.User_Id=User
+Join (Select c.C_DOC_ROUT_POINT_ID Id_Doc_Rout_Point, 
+                    (Case 
+											When Max(Nvl(cp.Result_Date, to_Date('01.01.0001')))=to_Date('01.01.0001') 
+											Then Null 
+											Else Max(cp.Result_Date)
+                    End) Date_In
+             From   Src.v_Doc_Rout_Point_Cnnctns c
+             Left   Join Src.v_Doc_Rout_Points cp
+             On     cp.Id_Doc_Rout_Point = c.P_DOC_ROUT_POINT_ID
+                    And cp.Stp_Doc_Resolution_Result_Id Not In (0, -1)
+             Group  By c.C_DOC_ROUT_POINT_ID) s
+On     s.Id_Doc_Rout_Point = p.Id_Doc_Rout_Point
+       And (s.Date_In Is Not Null or (p.Result_Date Is Null and Instr(p.Point_Position, '1.') <> 0))
+Group  By p.Doc_Rout_Id) p
+On p.Doc_Rout_Id=t.Doc_Header_Id
+/*BeginFilter*/Where (1=1)/*EndFilter*/

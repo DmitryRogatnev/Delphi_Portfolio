@@ -1,0 +1,17 @@
+/*Список состава сборки*/
+---------------------
+/*BeginColumns
+Det_Num;Det_Name
+EndColumns*/
+
+/*BeginTitles
+Чертежный №;Наименование
+EndTitles*/
+--------------------
+Select Distinct a.Det Det_Id,
+       a.Det_Txt Det_Num,
+       a.Nd Det_Name,
+       a.Kol
+From   Ogt.V$Spr_Rcd a
+Where  /*BeginFilter*/ (1=1) /*EndFilter*/
+	

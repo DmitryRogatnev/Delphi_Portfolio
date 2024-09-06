@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{B0FA1B9B-4D2A-401A-AF44-1C8029B38235}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="TECHNICAL_PROCESS_DOC.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="DLL_TECHNICAL_PROCESS_DOC.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="TECHNICAL_PROCESS_DOC">
+        <MSBuild Projects="TECHNICAL_PROCESS_DOC.dproj"/>
+    </Target>
+    <Target Name="TECHNICAL_PROCESS_DOC:Clean">
+        <MSBuild Projects="TECHNICAL_PROCESS_DOC.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TECHNICAL_PROCESS_DOC:Make">
+        <MSBuild Projects="TECHNICAL_PROCESS_DOC.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="DLL_TECHNICAL_PROCESS_DOC">
+        <MSBuild Projects="DLL_TECHNICAL_PROCESS_DOC.dproj"/>
+    </Target>
+    <Target Name="DLL_TECHNICAL_PROCESS_DOC:Clean">
+        <MSBuild Projects="DLL_TECHNICAL_PROCESS_DOC.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DLL_TECHNICAL_PROCESS_DOC:Make">
+        <MSBuild Projects="DLL_TECHNICAL_PROCESS_DOC.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="TECHNICAL_PROCESS_DOC;DLL_TECHNICAL_PROCESS_DOC"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="TECHNICAL_PROCESS_DOC:Clean;DLL_TECHNICAL_PROCESS_DOC:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="TECHNICAL_PROCESS_DOC:Make;DLL_TECHNICAL_PROCESS_DOC:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

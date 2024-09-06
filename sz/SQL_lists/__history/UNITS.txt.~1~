@@ -1,0 +1,18 @@
+/*Список единиц измерения*/
+---------------------
+/*COLUMNS_START
+<0>Unit_Code</0><1>Unit_Sname</1><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Код</0><1>Краткое наименование</1><end>
+TITLES_END*/
+--------------------
+
+Select t.* 
+From   Stp.V_Spr_Units t
+Where  Nvl(t.Date_Expitation, Sysdate) <= Sysdate
+	And /*FILTER_START*/ (1=1) /*FILTER_END*/ 
+        /*KEYWORD_START*/ And ( Upper(t.Unit_Code) like '%'||Upper(:V_Keyword)||'%'
+        Or Upper(t.Unit_Sname) like '%'||Upper(:V_Keyword)||'%'
+        Or Upper(t.Unit_FName) like '%'||Upper(:V_Keyword)||'%' ) /*KEYWORD_END*/ 

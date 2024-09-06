@@ -1,0 +1,19 @@
+/*Список кодов профессий*/
+---------------------
+/*COLUMNS_START
+<0>CODE_PROF</0><1>NAME_PROF</1><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Код</0><1>Наименование</1><end>
+TITLES_END*/
+--------------------
+Select Prof.Kodprof CODE_PROF, 
+       Prof.Prof NAME_PROF, 
+       Prof_C.Nc CODE_CEH 
+From   Sveta.M26 Prof 
+Join   Skl.S109_Factch Prof_C 
+On     Prof_C.KodProf = Prof .Kodprof
+Where  /*FILTER_START*/ (1=1) /*FILTER_END*/
+       /*KEYWORD_START*/And (Upper(Prof.Kodprof) Like '%'||Upper(:V_Keyword)||'%'
+                             Or Upper(Prof.Prof) Like '%'||Upper(:V_Keyword)||'%') /*KEYWORD_END*/

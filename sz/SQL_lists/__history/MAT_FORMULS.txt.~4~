@@ -1,0 +1,26 @@
+/*Список формул для расчета норм*/
+---------------------
+/*COLUMNS_START
+<0>Forml_Name</0><1>Forml_Val</1><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Наименование формулы</0><1>Формула</1><end>
+TITLES_END*/
+--------------------
+
+Select t.Id_Rw_Mat_Frml,
+       t.Forml_Name,
+			 t.Forml_Val,
+			 t.Mat_Id,
+			 t.Dep_Id
+From   Ogt.v_Spr_Matx_Formuls t
+Where  t.Rw_State = 'current_version'
+       and (t.Dep_Id In (Select a.Dep_Id 
+			                   From   Stp.Dep_Mmbrs a
+												 Where  a.User_Id = User
+												        And a.Dep_Mmbr_Pstn_Id = 201)
+						or Stp.Pkg_User.F_Check_Program_Param ( In_Object_Id => 11965, 
+                                               In_Parametr => 'ADMIN',
+                                               In_Value => '1' ) = 1)
+       And /*FILTER_START*/ (1=1) /*FILTER_END*/ 

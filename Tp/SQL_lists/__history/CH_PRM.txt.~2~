@@ -1,0 +1,11 @@
+/*Список значений параметоров*/
+---------------------
+/*BeginColumns VL_CH_PRM EndColumns*/
+
+/*BeginTitles Значение EndTitles*/
+--------------------
+Select t.*,
+       t.VL_CH_PRM
+From   Ogt.V_TP_OP_PRM_CH_PRM_LINK t
+Where  /*BeginFilter*/ (1=1) /*EndFilter*/
+	

@@ -1,0 +1,15 @@
+/*Список причин выпуска*/
+---------------------
+/*BeginColumns OBOR_NAME EndColumns*/
+
+/*BeginTitles Наименование оборудования EndTitles*/
+--------------------
+
+Select  Id_Obor, 
+        Name_Obor OBOR_NAME, 
+        Group_Id 
+From    Skl.V_OPP_SPR_OBOR_CEH t 
+Where   Nvl( t.Kol, 0 ) >= 1 
+        And Nvl( t.Pr, 0 ) = 1
+	And /*BeginFilter*/ (1=1) /*EndFilter*/
+	/*BeginKeyword*/ And Translate (Upper(t.Name_Obor), ' .-', '%') Like '%'||Translate(Upper(:V_Keyword),' .-*', '%')||'%' /*EndKeyword*/

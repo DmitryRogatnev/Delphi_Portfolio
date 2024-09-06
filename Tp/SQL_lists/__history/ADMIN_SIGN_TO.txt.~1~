@@ -1,0 +1,63 @@
+/*Список ступеней для подписания*/
+---------------------
+/*COLUMNS_START
+<0>Ceh_Code</0><1>Appr_Step_Name</1><2>EMP_FIO</2><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Цех</0><1>Наименование ступени</1><2>Подписант</2><end>
+TITLES_END*/
+--------------------
+Select * 
+From ( Select Appr.Ceh_Code, 
+              Appr.Ceh_Id, 
+              Appr.Dep_Id, 
+              Appr.Appr_Step_Name, 
+              Appr.Stp_Id_Doc_Rout_Point,
+              Appr.Id_Doc_Tp, 
+              Appr.Doc_Header_Id, 
+              U.Emp_Id, 
+              U.Emp_Fio 
+        From  Stp.V_Dep_Mmbrs t 
+        Left  Join Stp.v_Users U 
+        On    U.Id_User = t.User_Id 
+        Cross Join Ogt.v_Spr_Tp_Doc_Appr Appr 
+        Left  Join Stp.v_Deps Dep 
+        On    Dep.Id_dep = t.Dep_Id 
+        Where Appr.Flag_In = 1 
+              And Appr.Ceh_Code = Dep.Dep_Code 
+              And Appr.Flag_Out <> 2 
+              And Appr.Appr_Step = ( Case 
+                                       When t.Dep_Mmbr_Pstn_Id = 1 
+                          	            Or t.Dep_Mmbr_Pstn_Id = 2 Then '004' 
+                          	       When t.Dep_Mmbr_Pstn_Id = 203 Then '002' 
+                                       When t.Dep_Mmbr_Pstn_Id = 202 Then '003'
+                          	       When t.Dep_Mmbr_Pstn_Id = 204 Then '005'
+                          	       When t.Dep_Mmbr_Pstn_Id = 221 Then '008' 
+                          	       When t.Dep_Mmbr_Pstn_Id = 201 
+                          		    And Dep.Id_Dep = Appr.Dep_Id 
+                                       Then '006'
+                                     End )) 
+	Union All
+
+
+	Select Appr.Ceh_Code, 
+               Appr.Ceh_Id, 
+               Appr.Dep_Id, 
+               Appr.Appr_Step_Name, 
+               Nvl( Appr.Stp_Id_Doc_Rout_Point, 0), 
+               Appr.Id_Doc_Tp, 
+               Appr.Doc_Header_Id, 
+               U.Emp_Id, 
+               U.Emp_Fio VSB_EMP_FIO 
+        From   Stp.v_Users U 
+        Cross  Join Ogt.v_Spr_Tp_Doc_Appr Appr 
+        Left   Join Ogt.v_Spr_Tp_Doc Info 
+        On     Info.Doc_Header_Id = Appr.Doc_Header_Id 
+        Where  Appr.Flag_In = 1 
+	       And Appr.Appr_Step = '001'
+               And Appr.Flag_Out = 0 
+               And U.Emp_Id = Info.Author_Lnum  ) 
+Where  /*FILTER_START*/ (1=1) /*FILTER_END*/
+      /*KEYWORD_START*/ And Doc_Header_Id = :V_Keyword /*KEYWORD_END*/
+	

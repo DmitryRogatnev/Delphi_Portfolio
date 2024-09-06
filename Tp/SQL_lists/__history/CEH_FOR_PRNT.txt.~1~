@@ -1,0 +1,40 @@
+/*Список цехов для печати*/
+---------------------
+/*COLUMNS_START
+<0>CEH_CODE</0><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Цех</0><end>
+TITLES_END*/
+--------------------
+Select  Distinct t.Ceh_Id,
+	      t.Ceh_Code CEH_CODE 
+From    Ogt.v_Tp_Ok_Mar_Parts t
+Join    Ogt.V_Spr_Tp_Doc Inf
+On      (Inf.Id = t.Id_Doc_Tp
+        Or Inf.Main_Doc_Id = t.Id_Doc_Tp)
+        And Inf.Doc_Header_Id=:V_Keyword
+Join    (Select Max(a.Id_Doc_Tp||a.Doc_Tp_Vers_Id) Actual, 
+                                          a.Id
+				 From   Ogt.V_Tp_Ok_Mar_Parts_Vers a
+				 Join   Ogt.V_Spr_Tp_Doc Inf
+				 On     (Inf.Id = a.Id_Doc_Tp
+				         Or Inf.Main_Doc_Id = a.Id_Doc_Tp)
+					And Inf.Doc_Header_Id=:V_Keyword
+				 Where  a.Doc_Tp_Vers_Id In ( Select a.Id_Vers
+							      From   ogt.v_Spr_Tp_Doc a 
+					          	      Connect By Prior a.Parent_Doc_Id = a.Doc_Header_Id
+							      Start With a.Doc_Header_Id=:V_Keyword )
+           Group By a.Id) b
+On b.Id = t.Id
+   And b.Actual = t.Id_Doc_Tp||t.Doc_Tp_Vers_Id
+where ((Case
+           when t.Doc_Tp_Vers_Id <> Inf.Id_Vers
+                And (t.Rw_Status = 'deleted'
+                     Or t.Rw_Vers = 'old_version')
+           then 0
+           else 1
+       end) = 1)
+      And /*FILTER_START*/ (1=1) /*FILTER_END*/
+	

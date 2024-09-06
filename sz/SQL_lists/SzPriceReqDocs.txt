@@ -1,0 +1,22 @@
+/*Список документов*/
+---------------------
+/*BeginColumns
+DEP_CODE;SZ_NUMBER;SZ_DATE;EMP_FIO
+EndColumns*/
+
+/*BeginTitles
+Отдел;№ док.;Дата;Исполнитель
+EndTitles*/
+--------------------
+
+Select /*BeginFields*/t.*, u.Emp_Fio, dep.Dep_Code, dep.Dep_Sname/*EndFields*/
+From   Src.v_Sz_Price_Request t
+Left  Join Src.v_Doc_Routs r
+On    r.Doc_Header_Id=t.DOC_HEADER_ID
+Left  Join Stp.v_Users u
+On    u.Id_User=t.i_User
+      And u.Id_User_Add=t.I_User_Add
+Left  Join Stp.V_Deps dep
+On    Dep.Id_Dep=t.Sz_Dep_Id
+      And Nvl(Dep.Date_Expitation, Sysdate)>=Sysdate
+/*BeginFilter*/ Where (1=1) /*EndFilter*/

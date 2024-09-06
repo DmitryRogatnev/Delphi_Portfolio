@@ -1,0 +1,16 @@
+/*Список причин выпуска*/
+---------------------
+/*COLUMNS_START
+<0>REASON</0><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Причина</0><end>
+TITLES_END*/
+--------------------
+
+Select  Distinct Trim( t.Reason ) REASON 
+From    Ogt.V_SPR_TP_DOC t 
+Where   t.Reason Is Not Null
+	And   /*FILTER_START*/ (1=1) /*FILTER_END*/
+	 

@@ -1,0 +1,24 @@
+/*Список деталей/материалов/комплектующих ОАСУПиИТ*/
+---------------------
+/*COLUMNS_START
+<0>REP_DOC_NUMBER</0><1>Rep_Doc_Type_Name</1><2>REP_DOC_NAME</2><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>№ док.</0><1>Тип</1><2>Наименование</2><end>
+TITLES_END*/
+--------------------
+
+Select a.DOC_HEADER_ID,
+       a.PRNT_DOC_HEADER_ID,
+			 a.OLD_VERS_DOC_HEADER_ID,
+			 a.REP_DOC_NUMBER,
+			 a.REP_DOC_TYPE,
+			 t.Rep_Doc_Type_Name,
+			 a.REP_DOC_NAME,
+			 a.REP_DOC_PRODUCT
+From   Src.v_Repair_Doc_Aes a
+Left   Join Stp.v_Repair_Doc_Types t
+On     t.Rep_Doc_Type_Id=a.REP_DOC_TYPE
+Where /*FILTER_START*/ (1=1) /*FILTER_END*/
+        /*KEYWORD_START*/ And ( Upper(a.REP_DOC_NUMBER) like '%'||Upper(:V_Keyword)||'%' ) /*KEYWORD_END*/

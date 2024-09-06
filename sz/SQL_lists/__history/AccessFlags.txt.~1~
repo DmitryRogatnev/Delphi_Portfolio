@@ -1,0 +1,13 @@
+/*Список видов доступа*/
+---------------------
+/*BeginColumns
+Access_Flag_Name
+EndColumns*/
+
+/*BeginTitles
+Вид доступа
+EndTitles*/
+--------------------
+Select a.*
+From   Mrk.v_Sz_Pr_Req_Upd_Acc_Flags a
+Where /*BeginFilter*/ (1=1) /*EndFilter*/

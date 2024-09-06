@@ -1,0 +1,17 @@
+/*техн. требований к операциям*/
+---------------------
+/*COLUMNS_START
+<0>TT</0><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Техн. требования к операциям</0><end>
+TITLES_END*/
+--------------------
+
+Select * 
+From   ( Select Distinct Trim(t.TT) TT 
+	 From   Ogt.V_Tp_Ok_Dlp t 
+         Where  t.TT Is Not Null ) 
+Where  /*FILTER_START*/ (1=1) /*FILTER_END*/
+	 

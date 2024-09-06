@@ -1,0 +1,21 @@
+/*Список материалов*/
+---------------------
+/*COLUMNS_START
+<0>Kodm_Mat</0><1>NAME_MAT</1><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Код</0><1>Наименование</1><end>
+TITLES_END*/
+--------------------
+
+Select t.Id_Mat, 
+       t.Name_Mat NAME_MAT, 
+       t.Kodm_Mat, 
+       t.Code_Ed CODE_ED 
+From   Ogt.V_SPR_MATERIALS t 
+Where  t.Flag_Use = 1
+       And  /*FILTER_START*/ (1=1) /*FILTER_END*/
+       /*KEYWORD_START*/And ( Translate(Upper(t.Name_Mat), '.-*,', '%' ) Like '%'||Translate(Upper(:V_Keyword), '.-*,', '%')||'%'
+                              Or Upper(t.Kodm_Mat) like '%'||upper(:V_Keyword)||'%' ) /*KEYWORD_END*/
+	

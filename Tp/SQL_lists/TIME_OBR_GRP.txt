@@ -1,0 +1,15 @@
+/*Список названий групп оборуд. для расчета*/
+---------------------
+/*BeginColumns
+Group_Name
+EndColumns*/
+
+/*BeginTitles
+Группа
+EndTitles*/
+--------------------
+Select a.ID_RW_TP_T_OBR_GRP Group_Id,
+       a.GRP_OBR_NAME Group_Name 
+From   Ogt.Tp_Time_Obr_Grps a
+Where  /*BeginFilter*/ (1=1) /*EndFilter*/
+	

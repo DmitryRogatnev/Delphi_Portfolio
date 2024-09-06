@@ -1,0 +1,14 @@
+/*Список названий групп работ для расчета*/
+---------------------
+/*COLUMNS_START
+<0>Work_Name</0><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Работы</0><end>
+TITLES_END*/
+--------------------
+Select a.ID_RW_TP_TIME_WRK Work_Id,
+       a.Work_Name 
+From   Ogt.Tp_Time_Works a
+Where  /*FILTER_START*/ (1=1) /*FILTER_END*/

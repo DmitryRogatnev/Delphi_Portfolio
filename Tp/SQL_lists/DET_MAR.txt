@@ -1,0 +1,20 @@
+/*Список маршрутов детали*/
+---------------------
+/*BeginColumns
+Det_Num_Name;Mar
+EndColumns*/
+
+/*BeginTitles
+Шифр/Наименование детали;Маршрут
+EndTitles*/
+--------------------
+Select  Distinct t.Id,
+        t.Num_Det||' '||t.Name_Det Det_Num_Name, 
+        t.Mar MAR, 
+        t.Id_Det, 
+        t.Num_Det, 
+        t.Name_Det 
+From    Ogt.V_SPR_RCD t 
+Where   Ogt.Ras.Status_Mtm( t.Id_Mtm )||Ogt.Ras.Status_Mtm( t.Id_C_Mtm )='10'
+        And /*BeginFilter*/ (1=1) /*EndFilter*/
+	

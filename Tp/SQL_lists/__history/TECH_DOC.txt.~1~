@@ -1,0 +1,51 @@
+/*Список документов*/
+---------------------
+/*COLUMNS_START
+<0>Num_Doc</0><1>Doc_Type_Name</1><2>Addit_Info_Num</2><3>Addit_Info_Name</3><4>Sec_Addit_Info</4><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Номер документа</0><1>Тип</1><2>Номер/Шифр ТП/Детали</2><3>Наименование ТП/Детали</3><4>Маршрут детали/Вид работ</4><end>
+TITLES_END*/
+--------------------
+Select t.Id Id_Doc, 
+       ( Case 
+           When t.Main_Doc_Id Is Null 
+           Then t.Id 
+           Else t.Main_Doc_Id 
+         End ) Main_Doc_Id, 
+       t.Main_Doc_Id Real_Main_Doc_Id, 
+       t.Doc_Header_Id, 
+       t.Doc_Num Num_Doc, 
+       ( Case t.Doc_Type 
+           When 1 Then 'Единичный'
+           When 2 Then 'Типовой'
+           When 3 Then 'Групповой'
+           When 4 Then 'Ведомость'
+           When 5 Then 'Комплект документов'
+         End ) Doc_Type_Name, 
+       t.Doc_Type, 
+       t.Ceh_Id, 
+       t.Ceh_Code, 
+       t.Det_Id Id_Det, 
+       ( Case 
+           When t.Doc_Type In ( 1 ) Then t.Det_Num 
+           When t.Doc_Type In ( 2, 4 ) Then t.Tp_Num 
+         End ) Addit_Info_Num, 
+       ( Case 
+           When t.Doc_Type In ( 1 ) Then t.Det_Name 
+           When t.Doc_Type In ( 2, 4 ) Then t.Tp_Name 
+         End ) Addit_Info_Name, 
+       ( Case 
+           When t.Doc_Type In ( 1 ) Then t.Det_Mar 
+           When t.Doc_Type In ( 2, 4 ) Then t.Tp_Work_Type_Name 
+         End ) Sec_Addit_Info, 
+       t.Tp_Work_Type, 
+       t.Izd_Id, 
+       t.Izd_Name, 
+       t.Izd_Type 
+From   Src.V_Tech_Proc t
+Where  /*FILTER_START*/ (1=1) /*FILTER_END*/
+       /*KEYWORD_START*/ And ( (Upper(t.Doc_Num) like '%'||Upper(:V_Keyword)||'%'
+                                Or Upper(t.Tp_Num) Like '%'||Upper(:V_Keyword )||'%') ) /*KEYWORD_END*/
+	

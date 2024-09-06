@@ -1,0 +1,51 @@
+/*Список документов*/
+---------------------
+/*BeginColumns
+Num_Doc;Doc_Type_Name;Addit_Info_Num;Addit_Info_Name;Sec_Addit_Info
+EndColumns*/
+
+/*BeginTitles
+Номер документа;Тип;Номер/Шифр ТП/Детали;Наименование ТП/Детали;Маршрут детали/Вид работ
+EndTitles*/
+--------------------
+Select t.Id Id_Doc, 
+       ( Case 
+           When t.Main_Doc_Id Is Null 
+           Then t.Id 
+           Else t.Main_Doc_Id 
+         End ) Main_Doc_Id, 
+       t.Main_Doc_Id Real_Main_Doc_Id, 
+       t.Doc_Header_Id, 
+       t.Doc_Num Num_Doc, 
+       ( Case t.Doc_Type 
+           When 1 Then 'Единичный'
+           When 2 Then 'Типовой'
+           When 3 Then 'Групповой'
+           When 4 Then 'Ведомость'
+           When 5 Then 'Комплект документов'
+         End ) Doc_Type_Name, 
+       t.Doc_Type, 
+       t.Ceh_Id, 
+       t.Ceh_Code, 
+       t.Det_Id Id_Det, 
+       ( Case 
+           When t.Doc_Type In ( 1 ) Then t.Det_Num 
+           When t.Doc_Type In ( 2, 4 ) Then t.Tp_Num 
+         End ) Addit_Info_Num, 
+       ( Case 
+           When t.Doc_Type In ( 1 ) Then t.Det_Name 
+           When t.Doc_Type In ( 2, 4 ) Then t.Tp_Name 
+         End ) Addit_Info_Name, 
+       ( Case 
+           When t.Doc_Type In ( 1 ) Then t.Det_Mar 
+           When t.Doc_Type In ( 2, 4 ) Then t.Tp_Work_Type_Name 
+         End ) Sec_Addit_Info, 
+       t.Tp_Work_Type, 
+       t.Izd_Id, 
+       t.Izd_Name, 
+       t.Izd_Type 
+From   Ogt.v_Spr_Tp_Doc t
+Where  /*BeginFilter*/ (1=1) /*EndFilter*/
+       /*BeginKeyword*/ And ( (Upper(t.Doc_Num) like '%'||Upper(:V_Keyword)||'%'
+                                Or Upper(t.Tp_Num) Like '%'||Upper(:V_Keyword )||'%') ) /*EndKeyword*/
+	

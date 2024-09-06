@@ -1,0 +1,14 @@
+/*Список видов работ из норм расхода*/
+---------------------
+/*BeginColumns NAME_VIDRAB EndColumns*/
+
+/*BeginTitles Вид работ EndTitles*/
+--------------------
+
+Select Distinct a.Id_Vidrab, 
+       a.Name_Vidrab NAME_VIDRAB 
+From   Ogt.V_Norm_Mat a 
+Where  a.Flag = '1'
+       And a.Norma > 0 
+       And  /*BeginFilter*/ (1=1) /*EndFilter*/
+	

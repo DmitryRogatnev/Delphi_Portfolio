@@ -1,0 +1,1 @@
+Where t.SZ_DEP_ID=%d and /*BeginFilter*/(1=1)/*EndFilter*/

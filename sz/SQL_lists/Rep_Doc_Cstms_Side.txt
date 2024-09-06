@@ -1,0 +1,15 @@
+/*Список деталей/материалов/комплектующих ОАСУПиИТ*/
+---------------------
+/*COLUMNS_START
+<0>CSTM_NAME</0><1>CSTM_PROF</1><2>CSTM_PROF_DOC</2><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Ф.И.О.</0><1>Должность</1><2>На основании</2><end>
+TITLES_END*/
+--------------------
+
+Select /*FIELDS_START*/ t.* /*FIELDS_END*/
+From   Src.V_REPAIR_DOCS_AES_CSTMER_SIDE t
+Where /*FILTER_START*/ (1=1) /*FILTER_END*/
+      /*KEYWORD_START*/ and  (1=1) /*KEYWORD_END*/

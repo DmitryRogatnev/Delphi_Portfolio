@@ -1,0 +1,16 @@
+/*Список формул материалов*/
+---------------------
+/*COLUMNS_START
+<0>Forml_Name</0><1>Forml_Val</1><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Наименование</0><1>Формула расчета</1><end>
+TITLES_END*/
+--------------------
+
+Select t.* 
+From   Ogt.v_Spr_Matx_Formuls t
+Left   Join Ogt.v_Spr_Materials m
+On     m.Id_Mat = t.Mat_Id
+Where  /*FILTER_START*/ (1=1) /*FILTER_END*/

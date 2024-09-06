@@ -1,0 +1,35 @@
+/*Список материалов из пресетов КТО*/
+---------------------
+/*COLUMNS_START
+<0>Nrm_Item_Code</0><1>Nrm_Item_Name</1><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Код</0><1>Наименование</1><end>
+TITLES_END*/
+--------------------
+
+select t.Mat_Rw_Id Nrm_Item_Id,
+       m.Name_Mat Nrm_Item_Name,
+			 m.Kodm_Mat Nrm_Item_Code,
+			 (Case
+			    When t.Frml_Unorm_Relat = 'multiply'
+					Then Rtrim(To_Char((t.Mat_Unorm), 'fm99999990.9999'), '.' )||'*('||f.Forml_Val||')'
+			    When t.Frml_Unorm_Relat = 'plus'
+					Then Rtrim(To_Char((t.Mat_Unorm), 'fm99999990.9999'), '.' )||'+('||f.Forml_Val||')'
+			    When t.Frml_Unorm_Relat = 'minus'
+					Then Rtrim(To_Char((t.Mat_Unorm), 'fm99999990.9999'), '.' )||'-('||f.Forml_Val||')'
+			    When t.Frml_Unorm_Relat = 'divide'
+					Then Rtrim(To_Char((t.Mat_Unorm), 'fm99999990.9999'), '.' )||'/('||f.Forml_Val||')'
+			  End) Forml_Val,
+       'spr_matx' Nrm_Item_Source,
+       'preset_mat' Nrm_Item_Type
+from   Ogt.V_SPR_MATX_PRST_ITEMS t
+left   Join Ogt.v_Spr_Materials m
+On     m.Id_Mat = t.Mat_Rw_Id
+       And Nvl(m.Rw_State, 'current_version')  = 'current_version'
+Left   Join Ogt.v_Spr_Matx_Formuls f
+On     f.Id_Rw_Mat_Frml = t.Frml_Mat_Rw_Id
+       and f.Rw_State = 'current_version'
+Where  t.Rw_State = 'current_version'
+       And /*FILTER_START*/ (1=1) /*FILTER_END*/ 

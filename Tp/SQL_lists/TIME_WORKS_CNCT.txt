@@ -1,0 +1,18 @@
+/*Список названий групп работ для расчета*/
+---------------------
+/*BeginColumns
+Work_Name
+EndColumns*/
+
+/*BeginTitles
+Работы
+EndTitles*/
+--------------------
+Select a.WRK_RW_Id Work_Id,
+       a.Work_Name,
+       a.Work_Time
+From   Ogt.V_Tp_Time_Wrk_Op_Grp_Link a
+Where  /*BeginFilter*/ (1=1) /*EndFilter*/
+       /*BeginKeyword*/And (Upper(a.Work_Name) Like '%'||Upper(:V_Keyword)||'%'
+                              Or Upper(a.WRK_RW_Id) Like '%'||Upper(:V_Keyword)||'%') /*EndKeyword*/
+	

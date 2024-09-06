@@ -1,0 +1,18 @@
+/*Список деталей ОАСУПиИТ*/
+---------------------
+/*COLUMNS_START
+<0>Kd</0><1>Nom</1><2>Naim</2><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Код</0><1>Шифр</1><2>Наименование</2><end>
+TITLES_END*/
+--------------------
+
+Select t.* 
+From   Sveta.M08 t 
+Where  Nvl( t.Snpr, 10 ) <> 0 
+	And /*FILTER_START*/ (1=1) /*FILTER_END*/ 
+        /*KEYWORD_START*/ And ( Upper(t.Kd) like '%'||Upper(:V_Keyword)||'%'
+        Or Upper(t.Nom) like '%'||Upper(:V_Keyword)||'%'
+        Or Upper(t.Naim) like '%'||Upper(:V_Keyword)||'%' ) /*KEYWORD_END*/ 

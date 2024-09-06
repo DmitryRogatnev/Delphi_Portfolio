@@ -1,0 +1,4 @@
+Join Src.v_Doc_Routs r
+On   r.Doc_Rout_Id=t.Doc_Header_Id
+     And r.Date_End_Route Is Not Null
+/*BeginFilter*/Where (1=1)/*EndFilter*/

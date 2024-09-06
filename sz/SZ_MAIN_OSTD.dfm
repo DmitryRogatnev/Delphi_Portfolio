@@ -1,0 +1,950 @@
+object Form13: TForm13
+  Left = 0
+  Top = 0
+  Caption = #1041#1072#1079#1072' '#1079#1072#1087#1088#1086#1089#1086#1074' '#1089#1090#1086#1080#1084#1086#1089#1090#1080' '#1086#1073#1086#1088#1091#1076#1086#1074#1072#1085#1080#1103
+  ClientHeight = 650
+  ClientWidth = 1300
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  Menu = MainMenu1
+  OldCreateOrder = False
+  Position = poScreenCenter
+  OnClose = FormClose
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object DBGridEh1: TDBGridEh
+    AlignWithMargins = True
+    Left = 3
+    Top = 333
+    Width = 1294
+    Height = 280
+    Align = alClient
+    DataSource = DS_CONTENT
+    DynProps = <>
+    EditActions = [geaCutEh, geaCopyEh, geaPasteEh, geaDeleteEh, geaSelectAllEh]
+    PopupMenu = PopupMenu1
+    TabOrder = 0
+    OnGetCellParams = DBGridEh1GetCellParams
+    Columns = <
+      item
+        CellButtons = <>
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'ID_STR'
+        Footers = <>
+        Title.Caption = #8470' '#1087'/'#1087
+        Width = 40
+      end
+      item
+        CellButtons = <>
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'SZ_NAME_OB'
+        Footers = <>
+        Title.Caption = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077
+        Width = 403
+      end
+      item
+        CellButtons = <>
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'SZ_IBYAL_OB'
+        Footers = <>
+        Title.Caption = #1063#1077#1088#1090#1077#1078#1085#1099#1081' '#8470
+        Width = 348
+      end>
+    object RowDetailData: TRowDetailPanelControlEh
+    end
+  end
+  object Panel4: TPanel
+    Left = 0
+    Top = 0
+    Width = 1300
+    Height = 49
+    Align = alTop
+    TabOrder = 1
+    DesignSize = (
+      1300
+      49)
+    object USERS_LBL: TLabel
+      Left = 1162
+      Top = 1
+      Width = 69
+      Height = 14
+      Anchors = [akTop, akRight]
+      Caption = #1048#1089#1087#1086#1083#1085#1080#1090#1077#1083#1100
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Arial'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label1: TLabel
+      Left = 49
+      Top = 1
+      Width = 30
+      Height = 14
+      Caption = #8470' '#1089'/'#1079
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Arial'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label2: TLabel
+      Left = 17
+      Top = 20
+      Width = 21
+      Height = 14
+      Caption = #1047#1057' -'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Arial'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label4: TLabel
+      Left = 107
+      Top = 1
+      Width = 152
+      Height = 14
+      Caption = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077' '#1086#1073#1086#1088#1091#1076#1086#1074#1072#1085#1080#1103
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Arial'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label9: TLabel
+      Left = 300
+      Top = 3
+      Width = 74
+      Height = 14
+      Caption = #1063#1077#1088#1090#1077#1078#1085#1099#1081' '#8470
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Arial'
+      Font.Style = []
+      ParentFont = False
+    end
+    object CB_Contact: TDBLookupComboboxEh
+      Left = 1131
+      Top = 17
+      Width = 145
+      Height = 21
+      Anchors = [akTop, akRight]
+      DynProps = <>
+      DataField = ''
+      EditButtons = <>
+      KeyField = 'FIO'
+      ListField = 'FIO'
+      ListSource = USERS_DATA
+      TabOrder = 0
+      Visible = True
+      OnKeyValueChanged = CB_ContactKeyValueChanged
+    end
+    object Edit1: TEdit
+      Left = 41
+      Top = 17
+      Width = 59
+      Height = 22
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Arial'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 1
+      Text = 'Edit1'
+      OnChange = Edit1Change
+    end
+    object Edit2: TEdit
+      Left = 107
+      Top = 17
+      Width = 187
+      Height = 22
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Arial'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 2
+      OnChange = Edit2Change
+    end
+    object Edit3: TEdit
+      Left = 300
+      Top = 17
+      Width = 187
+      Height = 22
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Arial'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 3
+      OnChange = Edit3Change
+    end
+  end
+  object DBGridEh_OUTP: TDBGridEh
+    AlignWithMargins = True
+    Left = 3
+    Top = 52
+    Width = 1294
+    Height = 275
+    Align = alTop
+    AutoFitColWidths = True
+    DataSource = DS_INFO_MAIN
+    DynProps = <>
+    EditActions = [geaCutEh, geaCopyEh, geaPasteEh, geaDeleteEh, geaSelectAllEh]
+    PopupMenu = PM_GRID_FOR_SIG
+    TabOrder = 2
+    Columns = <
+      item
+        CellButtons = <>
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'SZ_NUMB'
+        Footers = <>
+        Title.Caption = #8470' '#1089'/'#1079
+        Width = 40
+      end
+      item
+        CellButtons = <>
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'SZ_DATE'
+        Footers = <>
+        Title.Caption = #1044#1072#1090#1072
+        Width = 80
+      end
+      item
+        CellButtons = <>
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'SZ_FROM'
+        Footers = <>
+        Title.Caption = #1054#1090
+        Width = 150
+      end
+      item
+        CellButtons = <>
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'SZ_TO'
+        Footers = <>
+        Title.Caption = #1050#1086#1084#1091
+        Width = 150
+      end
+      item
+        CellButtons = <>
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'SZ_COPY'
+        Footers = <>
+        Title.Caption = #1050#1086#1087#1080#1103
+        Width = 150
+      end
+      item
+        CellButtons = <>
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'SZ_TEMA'
+        Footers = <>
+        Title.Caption = #1058#1077#1084#1072
+        Width = 150
+      end
+      item
+        CellButtons = <>
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'CONTACT'
+        Footers = <>
+        Title.Caption = #1048#1089#1087#1086#1083#1085#1080#1090#1077#1083#1100
+        Width = 85
+      end>
+    object RowDetailData: TRowDetailPanelControlEh
+    end
+  end
+  object Panel5: TPanel
+    Left = 0
+    Top = 616
+    Width = 1300
+    Height = 34
+    Align = alBottom
+    TabOrder = 3
+    object Btn_Comment: TButton
+      Left = 24
+      Top = 4
+      Width = 89
+      Height = 25
+      Caption = #1050#1086#1084#1084#1077#1085#1090#1072#1088#1080#1080
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Arial'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 0
+      OnClick = Button4Click
+    end
+    object Button5: TButton
+      Left = 432
+      Top = 4
+      Width = 169
+      Height = 25
+      Caption = #1055#1086#1076#1087#1080#1089#1072#1090#1100
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Arial'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 1
+      OnClick = Button5Click
+    end
+    object Button6: TButton
+      Left = 1184
+      Top = 4
+      Width = 89
+      Height = 25
+      Caption = #1042#1099#1093#1086#1076
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Arial'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 2
+      OnClick = Button6Click
+    end
+    object Button1: TButton
+      Left = 808
+      Top = 4
+      Width = 169
+      Height = 25
+      Caption = #1054#1090#1082#1072#1079#1072#1090#1100
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Arial'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 3
+      OnClick = Button1Click
+    end
+  end
+  object DS_Users: TOracleDataSet
+    SQL.Strings = (
+      
+        'select t.id, sz_enter.GetNameUser(t.id) as FIO FROM MRK.SZ_USERS' +
+        ' t where t.id_type_users = 1 or t.id_type_dop = 1'
+      ''
+      'union all'
+      ''
+      'select 999999, '#39#1042#1057#1045#39' from dual'
+      ''
+      'order by id')
+    Optimize = False
+    QBEDefinition.QBEFieldDefs = {
+      0500000002000000040000004900440001000000000006000000460049004F00
+      010000000000}
+    Session = Form20.OracleSession1
+    Left = 160
+    Top = 504
+    object DS_UsersID: TFloatField
+      FieldName = 'ID'
+    end
+    object DS_UsersFIO: TStringField
+      FieldName = 'FIO'
+      Size = 4000
+    end
+  end
+  object SimpleSQL: TOracleDataSet
+    Optimize = False
+    Session = Form20.OracleSession1
+    Left = 316
+    Top = 498
+  end
+  object OraclePackage2: TOraclePackage
+    Session = Form20.OracleSession1
+    PackageName = 'SZ_ENTER'
+    Left = 752
+    Top = 8
+  end
+  object OraclePackage1: TOraclePackage
+    Session = Form20.OracleSession1
+    PackageName = 'SZ_PACKAGE'
+    Left = 808
+    Top = 8
+  end
+  object TrayIcon1: TTrayIcon
+    BalloonTitle = #1041#1072#1079#1072' '#1089'/'#1079' '#1048#1053#1060#1054
+    BalloonTimeout = 1
+    BalloonFlags = bfInfo
+    Icons = ImageList1
+    Left = 948
+    Top = 554
+  end
+  object Timer1: TTimer
+    Enabled = False
+    Interval = 2
+    OnTimer = Timer1Timer
+    Left = 868
+    Top = 554
+  end
+  object DS_NOTIF: TOracleDataSet
+    SQL.Strings = (
+      'select t.*, t.rowid from SZ_TABLE_LOG t where t.sz_usertype = 4')
+    Optimize = False
+    QueryAllRecords = False
+    Session = Form20.OracleSession1
+    AfterRefresh = DS_NOTIFAfterRefresh
+    Left = 388
+    Top = 498
+  end
+  object MainMenu1: TMainMenu
+    Left = 568
+    Top = 17
+    object dsd1: TMenuItem
+      Caption = #1055#1077#1095#1072#1090#1100
+      OnClick = dsd1Click
+    end
+    object N1: TMenuItem
+      Caption = #1055#1088#1086#1074#1077#1088#1082#1072
+      OnClick = N1Click
+    end
+    object N2: TMenuItem
+      Caption = #1057#1087#1088#1072#1074#1082#1072
+      object N3: TMenuItem
+        Caption = #1055#1086#1084#1086#1097#1100
+        OnClick = N3Click
+      end
+      object N4: TMenuItem
+        Caption = #1054' '#1087#1088#1086#1075#1088#1072#1084#1084#1077
+        OnClick = N4Click
+      end
+    end
+    object N5: TMenuItem
+      Caption = #1053#1072#1089#1090#1088#1086#1081#1082#1080
+      Visible = False
+      object N6: TMenuItem
+        Caption = #1042#1082#1083#1102#1095#1077#1085#1080#1077' '#1087#1088#1080' '#1079#1072#1087#1091#1089#1082#1077' '#1089#1080#1089#1090#1077#1084#1099
+        OnClick = N6Click
+      end
+    end
+    object N20: TMenuItem
+      Caption = #1055#1086#1082#1072#1079#1072#1090#1100' '#1089#1087#1080#1089#1086#1082' '#1087#1086#1083#1100#1079#1086#1074#1072#1090#1077#1083#1077#1081
+      Visible = False
+    end
+  end
+  object SZ_CONTENT: TOracleDataSet
+    SQL.Strings = (
+      'select t.* from mrk.sz_table_seo t'
+      'where t.sz_id = :sz_id'
+      'order by t.id_str')
+    Optimize = False
+    Variables.Data = {
+      04000000010000000C0000003A0053005A005F00490044000500000000000000
+      00000000}
+    QBEDefinition.QBEFieldDefs = {
+      05000000080000000E00000053005A005F004E0055004D004200010000000000
+      0E00000053005A005F0044004100540045000100000000001400000053005A00
+      5F004E0041004D0045005F004F0042000100000000001600000053005A005F00
+      49004200590041004C005F004F0042000100000000000E000000490044005F00
+      43004F004E0054000100000000000C000000490044005F005300540052000100
+      000000001000000053005A005F0043004800450043004B000100000000001400
+      000053005A005F0043004F00440045005F004F004200010000000000}
+    Master = INFO_MAIN
+    MasterFields = 'sz_ID'
+    Session = Form20.OracleSession1
+    Left = 92
+    Top = 498
+    object SZ_CONTENTSZ_NUMB: TFloatField
+      FieldName = 'SZ_NUMB'
+    end
+    object SZ_CONTENTSZ_DATE: TDateTimeField
+      FieldName = 'SZ_DATE'
+    end
+    object SZ_CONTENTSZ_NAME_OB: TStringField
+      FieldName = 'SZ_NAME_OB'
+      Size = 1000
+    end
+    object SZ_CONTENTSZ_IBYAL_OB: TStringField
+      FieldName = 'SZ_IBYAL_OB'
+      Size = 1000
+    end
+    object SZ_CONTENTID_CONT: TFloatField
+      FieldName = 'ID_CONT'
+    end
+    object SZ_CONTENTID_STR: TFloatField
+      FieldName = 'ID_STR'
+    end
+    object SZ_CONTENTSZ_CHECK: TFloatField
+      FieldName = 'SZ_CHECK'
+    end
+    object SZ_CONTENTSZ_CODE_OB: TStringField
+      FieldName = 'SZ_CODE_OB'
+      Size = 1000
+    end
+  end
+  object DS_CONTENT: TDataSource
+    AutoEdit = False
+    DataSet = SZ_CONTENT
+    Left = 96
+    Top = 560
+  end
+  object ImageList1: TImageList
+    Left = 1016
+    Top = 560
+    Bitmap = {
+      494C010102000800940010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      0000000000003600000028000000400000001000000001002000000000000010
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000EAD99AFFEAD99AFFEAD99AFFEAD99AFF000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000004CC460FF4CC460FF4CC460FF4CC460FF000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000E8CF89FFE0B76EFFE5B86EFFEBE0A2FFEAD99AFFEAD99AFFEAD99AFFEAD9
+      9AFF000000000000000000000000000000000000000000000000000000000000
+      00003CBA51FF31AE46FF32AF47FF5FCC71FF4CC460FF4CC460FF4CC460FF4CC4
+      60FF000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000F9F3E33FE5B8
+      6EFFE5B86EFFE5B86EFFE5BC6DFFEDDC9DFFE4B56BFFEBB76AFFECDD9EFFEAD9
+      9AFFEAD99AFF0000000000000000000000000000000000000000CFEED43F32AF
+      47FF32AF47FF32AF47FF32B047FF53C866FF31AD45FF31AE46FF56CA69FF4CC4
+      60FF4CC460FF0000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000E4C782FFE3B3
+      6BFFE6BA6DFFE3B96EFFE8B96FFFE7BA70FFE5B86EFFE5B86EFFE9B76FFFF2D5
+      9CFFE5D997FFEAD99AFF0000000000000000000000000000000038B64DFF30AC
+      44FF32AF47FF32AF47FF32AF47FF32B047FF32AF47FF32AF47FF32AF47FF49C2
+      5DFF48C25CFF4CC460FF00000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000E5B86EFFE5B86EFFE5B8
+      6EFFE5B86EFFE5B86EFFE5B86EFFE5B86EFFE5B86EFFE5B86EFFE5B86EFFE7B6
+      6AFFE7B56DFFE6D691FFEAD99AFF000000000000000032AF47FF32AF47FF32AF
+      47FF32AF47FF32AF47FF32AF47FF32AF47FF32AF47FF32AF47FF32AF47FF31AD
+      45FF31AE46FF40BD55FF4CC460FF000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000E5B86EFFE6BB72FFFFFF
+      FFFFFFFFFFFFFDFFFEFFE9B66DFFFFFEFFFFE5B86EFFE5B86EFFFFFFFFFFF5FF
+      F6FFFFFFFFFFE3B96CFFEAD99AFF000000000000000032AF47FF33B148FFFAFA
+      FAFFFAFAFAFFF9FAF9FF31AE46FFF9FAF9FF32AF47FF32AF47FFFAFAFAFFF3F8
+      F4FFFAFAFAFF31AF46FF4CC460FF000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000E9E0ABD6E5B86EFFF2EDDEFFFFFF
+      FFFFE5B96CFFFFFFFFFFE5B86EFFFFFFFFFFE5B86EFFE5BA6BFFFFFFFFFFE5BA
+      71FFFFFFFFFFF3D9B1FFEAD99AFFFEFDFA0B6ACF7BD632AF47FFBDEAC4FFFAFA
+      FAFF32AF47FFFAFAFAFF32AF47FFFAFAFAFF32AF47FF32AF47FFFAFAFAFF32B0
+      47FFFAFAFAFF62CE74FF4CC460FFF7FCF80B0000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000E1B46AFFE5B86EFFFFFFFFFFFFFF
+      FFFFE3BD6FFFFFFEFFFFE5B86EFFFFFFFFFFD6AF61FFE6B674FFE0B05EFFF0BE
+      72FFFFFFFFFFF7DDAFFFEAD99AFFEAD99AFF30AC44FF32AF47FFFAFAFAFFFAFA
+      FAFF33B048FFF9FAF9FF32AF47FFFAFAFAFF2EA842FF32AF47FF2EA842FF34B2
+      49FFFAFAFAFF69D17AFF4CC460FF4CC460FF0000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000E5BE74FFE5B86EFFFFFFFFFFFFFF
+      FFFFE8B76DFFDFB05EFFE5B86EFFE2B466FFF8F7F9FFE5B86EFFE5B86EFFFFFF
+      F0FFF8FFFFFFE3B96CFFEAD99AFFEAD99AFF34B249FF32AF47FFFAFAFAFFFAFA
+      FAFF31AE46FF2EA842FF32AF47FF30AC44FFEBF6EDFF32AF47FF32AF47FFF1F8
+      F2FFF9FAF9FF31AF46FF4CC460FF4CC460FF0000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000F6F3DC58E5B86EFFFFFFFFFFFFFF
+      FFFFE5B96CFFFFFFFFFFE5B86EFFE2BA6FFFFFFFFFFFE5BA6BFFFFFFFFFFE5BA
+      71FFFFFFFFFFE0B15DFFEAD99AFFFEFEFD03C2EBC95832AF47FFFAFAFAFFFAFA
+      FAFF32AF47FFFAFAFAFF32AF47FF32AF47FFFAFAFAFF32AF47FFFAFAFAFF32B0
+      47FFFAFAFAFF2EA942FF4CC460FFFCFEFD030000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000DDB868FFDFB56AFFFFFF
+      FFFFFFFFFFFFFFFFF8FFE5B86EFFE5B86EFFFFFFFFFFE2B86BFFFFFFFFFFFEFE
+      FEFFFFFFFFFFE3B96CFFEAD99AFF000000000000000031AD45FF31AD45FFFAFA
+      FAFFFAFAFAFFF6F8F6FF32AF47FF32AF47FFFAFAFAFF31AE46FFFAFAFAFFF8F9
+      F8FFFAFAFAFF31AF46FF4CC460FF000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000EAD99AFFDDB96DFFEAB8
+      70FFE8BB72FFE5B86FFFE5B86FFFE5B86FFFE7BA71FFE6B970FFE5B86FFFE7BA
+      71FFE5B86FFFE4B871FFEADE96FF00000000000000004CC460FF31AE46FF32AF
+      47FF33B148FF32AF47FF32AF47FF32AF47FF32B047FF32AF47FF32AF47FF32B0
+      47FF32AF47FF32AF47FF50C663FF000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000EAD99AFFEAD9
+      9AFFEAD99AFFEAD99AFFEAD99AFFEAD99AFFEAD99AFFEAD99AFFEAD99AFFEAD9
+      9AFFEAD99AFFEBD89BFF000000000000000000000000000000004CC460FF4CC4
+      60FF4CC460FF4CC460FF4CC460FF4CC460FF4CC460FF4CC460FF4CC460FF4CC4
+      60FF4CC460FF4BC45FFF00000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000000000000000000000000000EAD9
+      9AFFEAD99AFFEAD99AFFEAD99AFFEAD99AFFEAD99AFFEAD99AFFEAD99AFFEAD9
+      9AFFECD89FFF0000000000000000000000000000000000000000000000004CC4
+      60FF4CC460FF4CC460FF4CC460FF4CC460FF4CC460FF4CC460FF4CC460FF4CC4
+      60FF4FC663FF0000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000EAD99AFFEAD99AFFEAD99AFFEAD99AFFEAD99AFFEAD99AFFEAD99AFFEAD9
+      9AFF000000000000000000000000000000000000000000000000000000000000
+      00004CC460FF4CC460FF4CC460FF4CC460FF4CC460FF4CC460FF4CC460FF4CC4
+      60FF000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000FEFDFC07EAD99AFFEAD99AFFFEFEFD05000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000FAFDFA074CC460FF4CC460FFFBFDFB05000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000424D3E000000000000003E000000
+      2800000040000000100000000100010000000000800000000000000000000000
+      000000000000000000000000FFFFFF00FC3FFC3F00000000F00FF00F00000000
+      C007C00700000000C003C0030000000080018001000000008001800100000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      80018001000000008001800100000000C003C00300000000E007E00700000000
+      F00FF00F00000000FC3FFC3F0000000000000000000000000000000000000000
+      000000000000}
+  end
+  object DS_Admin_NOTIF: TOracleDataSet
+    SQL.Strings = (
+      'select t.* from MRK.SZ_USERS_NOTIF t where t.id = :vID')
+    Optimize = False
+    Variables.Data = {
+      0400000001000000080000003A00560049004400050000000000000000000000}
+    QBEDefinition.QBEFieldDefs = {
+      050000000B00000004000000490044000100000000000E000000530055005200
+      4E0041004D004500010000000000080000004E0041004D004500010000000000
+      1400000050004100540052004F004E0059004D00490043000100000000001A00
+      0000490044005F0054005900500045005F005500530045005200530001000000
+      00001A000000490044005F0054005900500045005F004F005400440045004C00
+      0100000000000A000000500048004F004E004500010000000000160000005500
+      5300450052005F004F004E004C0049004E004500010000000000140000004500
+      4E005400450052005F0044004100540045000100000000001400000055005300
+      450052005F004E004F005400490046000100000000000E0000004D0045005300
+      5300410047004500010000000000}
+    QueryAllRecords = False
+    Session = Form20.OracleSession1
+    AfterRefresh = DS_Admin_NOTIFAfterRefresh
+    Left = 265
+    Top = 498
+    object DS_Admin_NOTIFID: TFloatField
+      FieldName = 'ID'
+    end
+    object DS_Admin_NOTIFSURNAME: TStringField
+      FieldName = 'SURNAME'
+      Size = 50
+    end
+    object DS_Admin_NOTIFNAME: TStringField
+      FieldName = 'NAME'
+      Size = 50
+    end
+    object DS_Admin_NOTIFPATRONYMIC: TStringField
+      FieldName = 'PATRONYMIC'
+      Size = 50
+    end
+    object DS_Admin_NOTIFID_TYPE_USERS: TIntegerField
+      FieldName = 'ID_TYPE_USERS'
+    end
+    object DS_Admin_NOTIFID_TYPE_OTDEL: TIntegerField
+      FieldName = 'ID_TYPE_OTDEL'
+    end
+    object DS_Admin_NOTIFPHONE: TStringField
+      FieldName = 'PHONE'
+    end
+    object DS_Admin_NOTIFUSER_ONLINE: TFloatField
+      FieldName = 'USER_ONLINE'
+    end
+    object DS_Admin_NOTIFENTER_DATE: TDateTimeField
+      FieldName = 'ENTER_DATE'
+    end
+    object DS_Admin_NOTIFUSER_NOTIF: TFloatField
+      FieldName = 'USER_NOTIF'
+    end
+    object DS_Admin_NOTIFMESSAGE: TStringField
+      FieldName = 'MESSAGE'
+      Size = 2000
+    end
+  end
+  object PopupMenu1: TPopupMenu
+    Left = 532
+    Top = 561
+    object N7: TMenuItem
+      Caption = #1055#1088#1080#1085#1103#1090#1100
+      OnClick = N7Click
+    end
+    object N8: TMenuItem
+      Caption = #1054#1090#1082#1083#1086#1085#1080#1090#1100
+      OnClick = N8Click
+    end
+  end
+  object Timer3: TTimer
+    Enabled = False
+    Interval = 300000
+    OnTimer = Timer3Timer
+    Left = 780
+    Top = 566
+  end
+  object INFO_MAIN: TOracleDataSet
+    SQL.Strings = (
+      'select t.* from mrk.V$SZ_MAIN_OP t '
+      'where SZ_NUMB like  :vNum ||'#39'%'#39
+      'and t.SZ_CONDITION like :vCondition ||'#39'%'#39'  '
+      'and upper(t.CONTACT) like '#39'%'#39' || upper(:vContact) ||'#39'%'#39' '
+      'and t.sz_id in ( Select a.Sz_Id '
+      '                 From   Mrk.Sz_Op_Appr a'
+      '                 Where  a.Id_Appr_Step = 3'
+      '                        And a.Flag_In = 1'
+      '                        And a.Flag_Out = 0)'
+      
+        'and t.sz_id in (select distinct t.sz_id from sz_table_seo t wher' +
+        'e translate (upper(decode(t.sz_ibyal_ob, null,'#39'%'#39', t.sz_ibyal_ob' +
+        ')), '#39#1056#1040' '#1040#1055#1048' '#1048#1041#1071#1051'.-'#39', '#39'%'#39')  like '#39'%'#39' || translate (upper(:vNOM),'#39 +
+        #1056#1040' '#1040#1055#1048' '#1048#1041#1071#1051'.-*'#39', '#39'%'#39') || '#39'%'#39')'
+      
+        'and t.sz_id in (select distinct t.sz_id from sz_table_seo t wher' +
+        'e upper(t.sz_name_ob) like '#39'%'#39' || translate (upper(:vNAIM),'#39'*'#39','#39 +
+        '%'#39') || '#39'%'#39') '
+      'order by SZ_DATE desc, SZ_NUMB desc')
+    Optimize = False
+    Variables.Data = {
+      0400000005000000120000003A00560043004F004E0054004100430054000500
+      000000000000000000000A0000003A0056004E0055004D000500000000000000
+      00000000160000003A00560043004F004E0044004900540049004F004E000500
+      000000000000000000000A0000003A0056004E004F004D000500000000000000
+      000000000C0000003A0056004E00410049004D00050000000000000000000000}
+    QBEDefinition.QBEFieldDefs = {
+      050000001A0000000E00000053005A005F00460052004F004D00010000000000
+      0A00000053005A005F0054004F000100000000000E00000043004F004E005400
+      4100430054000100000000000E00000053005A005F0044004100540045000100
+      000000000E00000053005A005F0043004F005000590001000000000018000000
+      53005A005F0043004F004E0044004900540049004F004E000100000000000E00
+      000053005A005F004E0055004D0042000100000000001600000053005A005F00
+      530045004F005F004E0055004D0042000100000000001600000053005A005F00
+      530045004F005F0044004100540045000100000000000A00000053005A005F00
+      4B0052000100000000000A00000053005A005F00490044000100000000000C00
+      00005300540041005400550053000100000000000E00000053005A005F005400
+      45004D0041000100000000001400000053005A005F00490044005F0043004F00
+      4E0054000100000000001C00000053005A005F0043004F004E0054005F005900
+      5F0044004100540045000100000000001C00000053005A005F00460052004F00
+      4D005F0059005F0044004100540045000100000000001800000053005A005F00
+      54004F005F0059005F0044004100540045000100000000001C00000053005A00
+      5F0043004F00500059005F0059005F0044004100540045000100000000001800
+      00005300540041005400550053005F00560041004C0055004500010000000000
+      1400000053005A005F00460052004F004D005F00490044000100000000001200
+      000053005A005F0043004F004E0054005F005900010000000000120000005300
+      5A005F00460052004F004D005F0059000100000000000E00000053005A005F00
+      54004F005F0059000100000000001200000053005A005F0043004F0050005900
+      5F0059000100000000001000000053005A005F0054004F005F00490044000100
+      000000001400000053005A005F0043004F00500059005F004900440001000000
+      0000}
+    ReadOnly = True
+    QueryAllRecords = False
+    Session = Form20.OracleSession1
+    Left = 24
+    Top = 504
+    object INFO_MAINSZ_ID: TFloatField
+      FieldName = 'SZ_ID'
+      Required = True
+    end
+    object INFO_MAINSZ_NUMB: TFloatField
+      FieldName = 'SZ_NUMB'
+    end
+    object INFO_MAINSZ_DATE: TDateTimeField
+      FieldName = 'SZ_DATE'
+    end
+    object INFO_MAINCONTACT: TStringField
+      FieldName = 'CONTACT'
+      Size = 1000
+    end
+    object INFO_MAINSZ_CONDITION: TFloatField
+      FieldName = 'SZ_CONDITION'
+    end
+    object INFO_MAINSZ_KR: TFloatField
+      FieldName = 'SZ_KR'
+    end
+    object INFO_MAINSZ_FROM: TStringField
+      FieldName = 'SZ_FROM'
+      Size = 4000
+    end
+    object INFO_MAINSZ_TO: TStringField
+      FieldName = 'SZ_TO'
+      Size = 4000
+    end
+    object INFO_MAINSZ_COPY: TStringField
+      FieldName = 'SZ_COPY'
+      Size = 4000
+    end
+    object INFO_MAINSTATUS: TStringField
+      FieldName = 'STATUS'
+      Size = 86
+    end
+    object INFO_MAINSZ_SEO_NUMB: TFloatField
+      FieldName = 'SZ_SEO_NUMB'
+    end
+    object INFO_MAINSZ_SEO_DATE: TDateTimeField
+      FieldName = 'SZ_SEO_DATE'
+    end
+    object INFO_MAINSZ_TEMA: TStringField
+      FieldName = 'SZ_TEMA'
+      Size = 1000
+    end
+    object INFO_MAINSZ_ID_CONT: TFloatField
+      FieldName = 'SZ_ID_CONT'
+    end
+    object INFO_MAINSTATUS_VALUE: TFloatField
+      FieldName = 'STATUS_VALUE'
+    end
+    object INFO_MAINSZ_CONT_Y: TFloatField
+      FieldName = 'SZ_CONT_Y'
+    end
+    object INFO_MAINSZ_CONT_Y_DATE: TDateTimeField
+      FieldName = 'SZ_CONT_Y_DATE'
+    end
+    object INFO_MAINSZ_FROM_Y: TFloatField
+      FieldName = 'SZ_FROM_Y'
+    end
+    object INFO_MAINSZ_FROM_Y_DATE: TDateTimeField
+      FieldName = 'SZ_FROM_Y_DATE'
+    end
+    object INFO_MAINSZ_TO_Y: TFloatField
+      FieldName = 'SZ_TO_Y'
+    end
+    object INFO_MAINSZ_TO_Y_DATE: TDateTimeField
+      FieldName = 'SZ_TO_Y_DATE'
+    end
+    object INFO_MAINSZ_COPY_Y: TFloatField
+      FieldName = 'SZ_COPY_Y'
+    end
+    object INFO_MAINSZ_COPY_Y_DATE: TDateTimeField
+      FieldName = 'SZ_COPY_Y_DATE'
+    end
+    object INFO_MAINSZ_FROM_ID: TFloatField
+      FieldName = 'SZ_FROM_ID'
+    end
+    object INFO_MAINSZ_TO_ID: TFloatField
+      FieldName = 'SZ_TO_ID'
+    end
+    object INFO_MAINSZ_COPY_ID: TFloatField
+      FieldName = 'SZ_COPY_ID'
+    end
+  end
+  object DS_INFO_MAIN: TDataSource
+    AutoEdit = False
+    DataSet = INFO_MAIN
+    Left = 24
+    Top = 560
+  end
+  object PM_GRID_FOR_SIG: TPopupMenu
+    Left = 428
+    Top = 226
+    object N9: TMenuItem
+      Caption = #1055#1077#1095#1072#1090#1100
+      OnClick = dsd1Click
+    end
+    object N11: TMenuItem
+      Caption = #1055#1088#1086#1074#1077#1088#1082#1072
+      OnClick = N1Click
+    end
+    object N10: TMenuItem
+      Caption = #1055#1086#1076#1087#1080#1089#1072#1090#1100
+      OnClick = Button5Click
+    end
+    object MenuItem1: TMenuItem
+      Caption = #1054#1090#1082#1072#1079#1072#1090#1100' '#1074' '#1087#1086#1076#1087#1080#1089#1072#1085#1080#1080
+      OnClick = Button1Click
+    end
+    object N14: TMenuItem
+      Caption = #1050#1086#1084#1084#1077#1085#1090#1072#1088#1080#1080
+      OnClick = Button4Click
+    end
+  end
+  object USERS_DATA: TDataSource
+    DataSet = DS_Users
+    Left = 156
+    Top = 562
+  end
+  object Db_Info_Count_2: TOracleDataSet
+    SQL.Strings = (
+      'select count (*) as NUM_STR from mrk.V$SZ_MAIN_OP t '
+      'where t.sz_id in ( Select a.Sz_Id '
+      '                    From   Mrk.Sz_Op_Appr a'
+      '                    Where  a.Id_Appr_Step = 3'
+      '                           And a.Flag_In = 1 )'
+      'order by SZ_DATE desc, SZ_NUMB desc'
+      '')
+    Optimize = False
+    QBEDefinition.QBEFieldDefs = {
+      05000000010000000E0000004E0055004D005F00530054005200010000000000}
+    QueryAllRecords = False
+    Session = Form20.OracleSession1
+    AfterRefresh = Db_Info_Count_2AfterRefresh
+    Left = 876
+    Top = 418
+    object Db_Info_Count_2NUM_STR: TFloatField
+      FieldName = 'NUM_STR'
+    end
+  end
+  object Db_Info_Count: TOracleDataSet
+    SQL.Strings = (
+      'select count (*) as NUM_STR from mrk.V$SZ_MAIN_OP t '
+      'where t.sz_id in ( Select a.Sz_Id '
+      '                    From   Mrk.Sz_Op_Appr a'
+      '                    Where  a.Id_Appr_Step = 3'
+      '                           And a.Flag_In = 1 )'
+      'order by SZ_DATE desc, SZ_NUMB desc'
+      '')
+    Optimize = False
+    QBEDefinition.QBEFieldDefs = {
+      05000000010000000E0000004E0055004D005F00530054005200010000000000}
+    QueryAllRecords = False
+    Session = Form20.OracleSession1
+    Left = 876
+    Top = 466
+    object Db_Info_CountNUM_STR: TFloatField
+      FieldName = 'NUM_STR'
+    end
+  end
+end

@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.301,=C:\acd\Source\Delphi\Project\Technical_Process_Doc\SQL_lists\OPER_PRIM.sqll</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.475,C:\Users\asup-49\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\acd\Source\Delphi\Project\Technical_Process_Doc\SQL_Lists_dll.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.317,=C:\acd\Source\Delphi\Project\Technical_Process_Doc\SQL_lists\OPERS.sqll</Transaction>
+  </Transactions>
+</BorlandProject>

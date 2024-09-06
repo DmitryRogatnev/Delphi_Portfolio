@@ -1,0 +1,25 @@
+/*Список ступеней для возврата*/
+---------------------
+/*BeginColumns
+Ceh_Code;Appr_Step_Name
+EndColumns*/
+
+/*BeginTitles
+Цех;Наименование ступени
+EndTitles*/
+--------------------
+Select t.Id Id_Appr
+       t.Appr_Step,
+       t.Ceh_Code,
+       ( Case
+           When t.Appr_Step = '006'
+           Then t.Appr_Step_Name||' ('||Dep.Dep_Sname||')'
+           Else t.Appr_Step_Name
+         End )  Appr_Step_Name
+From  Ogt.V_Spr_Tp_Doc_Appr t
+Left  Join Stp.v_Deps Dep
+On    t.Dep_Id = Dep.Id_Dep
+Where t.Flag_Out In ( 1, 2 )
+      And  /*BeginFilter*/ (1=1) /*EndFilter*/
+      /*BeginKeyword*/ And Upper(t.Appr_Step) like '%'||Upper(:V_Keyword)||'%' /*EndKeyword*/
+	

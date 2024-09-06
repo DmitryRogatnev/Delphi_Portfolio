@@ -1,0 +1,22 @@
+/*Список параметров для пресетов КТО*/
+---------------------
+/*COLUMNS_START
+<0>Name_Param</0><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Наименование параметра</0><end>
+TITLES_END*/
+--------------------
+
+Select Distinct t.Preset_Mat_Rw_Id,
+			 prm.Param_row_id,
+			 prm_i.Name_Param
+From   Ogt.V_SPR_MATX_PRST_ITEMS t
+Join   Ogt.v_spr_matx_frml_params prm
+On     prm.Frml_Mat_Rw_Id = t.Frml_Mat_Rw_Id
+       And prm.Rw_State = 'current_version'
+Join   Ogt.v_Tp_Ok_Oper_Params_List prm_i
+On     prm_i.Id_Row_Param = prm.Param_row_id
+Where  t.Rw_State = 'current_version'
+       And /*FILTER_START*/ (1=1) /*FILTER_END*/ 

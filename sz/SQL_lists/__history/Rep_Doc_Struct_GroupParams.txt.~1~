@@ -1,0 +1,17 @@
+/*Список секций структуры*/
+---------------------
+/*COLUMNS_START
+<0>Name_Param</0><1>Type_Param</1><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Наименование</0><1>Тип</1><end>
+TITLES_END*/
+--------------------
+Select t.param_row_id,
+			 p.Name_Param,
+			 p.Type_Param
+From   Stp.V_REPAIR_DOC_STRUCT_PARAMS t
+Left   Join Ogt.v_Tp_Ok_Oper_Params_List p
+On     p.Id_Row_Param=t.param_row_id
+Where  /*FILTER_START*/ (1=1) /*FILTER_END*/

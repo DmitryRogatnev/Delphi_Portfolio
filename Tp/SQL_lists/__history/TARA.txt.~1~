@@ -1,0 +1,25 @@
+/*Список тары*/
+---------------------
+/*COLUMNS_START
+<0>Num_Tara</0><1>Name_Tara</1><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Шифр</0><1>Наименование</1><end>
+TITLES_END*/
+--------------------
+
+Select t.Id Id_Tara, 
+       t.Tara Num_Tara, 
+       t.Naim_T||' '||( Case 
+                          When t.Length_Max Is Not Null 
+                          	Or t.Width_Max Is Not Null
+                          	Or t.Height_ Is Not Null 
+                          Then Nvl( t.Length_Max,0 )||'x'||Nvl( t.Width_Max,0 )||'x'||Nvl( t.Height_,0 ) 
+                          Else Null
+                        End ) Name_Tara 
+From   Ogt.V$Spr_Tara t
+Where  /*FILTER_START*/ (1=1) /*FILTER_END*/
+       /*KEYWORD_START*/ And ( Upper(t.Tara) like '%'||Upper( :V_Keyword )||'%' 
+                               Or Upper(t.Naim_T) like '%'||Upper(:V_Keyword)||'%') /*KEYWORD_END*/
+	

@@ -1,0 +1,13 @@
+/*Список статусов доступа*/
+---------------------
+/*BeginColumns
+Access_Status_Name
+EndColumns*/
+
+/*BeginTitles
+Статус доступа
+EndTitles*/
+--------------------
+Select a.*
+From   Mrk.v_Sz_Pr_Req_Upd_Acc_Stats a
+Where /*BeginFilter*/ (1=1) /*EndFilter*/

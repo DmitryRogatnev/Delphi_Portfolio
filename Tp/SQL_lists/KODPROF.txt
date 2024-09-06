@@ -1,0 +1,30 @@
+/*Список кодов профессий*/
+---------------------
+/*BeginColumns
+CODE_PROF;NAME_PROF;RAZR_PROF;KVN_PROF
+EndColumns*/
+
+/*BeginTitles
+Код;Наименование;Разряд;Код условий
+EndTitles*/
+--------------------
+
+Select Prof.Kodprof CODE_PROF,
+       Razr.Kvn KVN_PROF,
+       Razr.Razr RAZR_PROF,
+       Prof.Prof NAME_PROF,
+       Prof_C.Nc CODE_CEH
+From   Sveta.M26 Prof
+Join   Skl.S109_Factch Prof_C
+On     Prof_C.KodProf = Prof .Kodprof
+Left   Join ( Select Distinct a.Kodprof,
+	             a.Razr,
+                     a.Nc,
+                     a.Kvn
+              From   Sveta.M05 a ) Razr
+On     Razr.Kodprof = Prof.Kodprof
+       And Razr.Nc = Prof_C.Nc
+Where  /*BeginFilter*/ (1=1) /*EndFilter*/
+       /*BeginFilter*/And (Upper(Prof.Kodprof) Like '%'||Upper(:V_Keyword)||'%'
+                             Or Upper(Prof.Prof) Like '%'||Upper(:V_Keyword)||'%') /*EndFilter*/
+	

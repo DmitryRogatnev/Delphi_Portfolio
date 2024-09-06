@@ -1,0 +1,15 @@
+/*Список Действий*/
+---------------------
+/*COLUMNS_START
+<0>Rec_Action_Name</0><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Действие</0><end>
+TITLES_END*/
+--------------------
+
+Select t.Rec_Action_Id,
+       t.Rec_Action_Name
+From   Stp.V_Doc_Spc_Item_Rec_Action t
+Where  /*FILTER_START*/ (1=1) /*FILTER_END*/

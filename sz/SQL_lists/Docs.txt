@@ -1,0 +1,20 @@
+/*Список подразделений*/
+---------------------
+/*COLUMNS_START
+<0>Doc_Name</0><1>Doc_Number</1><2>Doc_Date</2><3>Descript</3><4>Create_Emp_Fio</4><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Тип документа</0><1>№ док.</1><2>Дата</2><3>Краткое описание</3><4>Автор</4><end>
+TITLES_END*/
+--------------------
+
+Select t.Id_Doc_Header,
+       t.Doc_Name,
+       t.Doc_Number,
+       t.Doc_Date,
+       Decode(clmn1_value, Null, Null, t.Clmn1_Description||': '||t.clmn1_value)||chr(10)||Decode(clmn2_value, Null, Null, t.Clmn2_Description||': '||t.clmn2_value)||chr(10)||Decode(clmn3_value, Null, Null, t.Clmn3_Description||': '||t.clmn3_value) Descript,
+       t.Create_Emp_Fio
+From   Src.V_DOC_HEADERS_LISTVIEW t
+Where  /*FILTER_START*/ (1=1) /*FILTER_END*/ 
+        /*KEYWORD_START*/ And ( Upper(t.Doc_Number) like '%'||Upper(:V_Keyword)||'%'/*KEYWORD_END*/

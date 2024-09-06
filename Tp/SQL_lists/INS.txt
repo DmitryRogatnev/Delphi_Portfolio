@@ -1,0 +1,12 @@
+/*Список инструментов*/
+---------------------
+/*BeginColumns Name_Instr EndColumns*/
+
+/*BeginTitles Наименование EndTitles*/
+--------------------
+Select t.Id Id_Ins,
+       t.Name_Instr Name_Instr
+From   Ogt.Spr_Instr t
+Where  /*BeginFilter*/ (1=1) /*EndFilter*/
+       /*BeginKeyword*/And (Translate(Upper(t.Name_Instr), ' .-', '%') Like '%'||Translate(Upper(:V_Keyword), ' .-*', '%')||'%') /*EndKeyword*/
+	

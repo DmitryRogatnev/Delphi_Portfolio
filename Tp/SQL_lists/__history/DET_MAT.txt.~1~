@@ -1,0 +1,48 @@
+/*Список материалов заготовки для детали*/
+---------------------
+/*COLUMNS_START
+<0>KODM_MAT</0><1>NAME_MAT</1><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Код</0><1>Наименование</1><end>
+TITLES_END*/
+--------------------
+
+Select Norm.Id_Mat, 
+       Norm.Name_Mat NAME_MAT, 
+       Norm.Kodm_Mat KODM_MAT
+From   Ogt.Spr_Det_Txt Det 
+Join   Ogt.v_Norm_Mat Norm 
+On     Norm.Id_Det = Det.id 
+       And Norm.Id_Vidrab = 6 
+       And Norm.Flag = '1' 
+       And Norm.Norma > 0
+       And Det.Mar Not Like 'О%'
+       And Det.Mar Not Like 'Н%'
+       And Det.Mar Not Like '=%'
+       And Det.Mar Not Like '-%'
+       And Det.Mar Not Like '?%'
+       And Det.Mar Not Like 'СМ%'
+       And Det.Mar Is Not Null 
+       And Instr( Det.Mar, '=' ) <> 0 
+Where  Norm.Code_Ceh Like ( Case 
+                              When Instr( Det.Mar, '-' ) <> 0 
+                              Then ( Case 
+                                       When Length( To_Char(Substr (Det.Mar, 0, Instr(Det.Mar, '-')-1 )) ) = 2 
+                                       Then To_Char( Substr ( Det.Mar, 0, Instr( Det.Mar, '-' )-1 ) ) 
+                                       When Length( To_Char(Substr (Det.Mar, 0, Instr(Det.Mar, '-')-1 )) )= 1 
+                                       Then '0'||To_Char( Substr ( Det.Mar, 0, Instr( Det.Mar, '-' ) -1 ) ) 
+                                     End ) 
+                              When Instr( Det.Mar, '-' ) = 0 
+                                   And Instr( Det.Mar, '=' ) <> 0 
+                              Then ( Case 
+                                       When Length( To_Char(Substr (Det.Mar, 0, Instr(Det.Mar, '=') -1 )) ) = 2 
+                                       Then To_Char( Substr ( Det.Mar, 0, Instr( Det.Mar, '=' ) -1 ) ) 
+                                       When Length( To_Char(Substr (Det.Mar, 0, Instr(Det.Mar, '=') -1 )) ) = 1 
+                                       Then '0'||To_Char( Substr ( Det.Mar, 0, Instr( Det.Mar, '=' ) -1 ) ) 
+                                     End ) 
+                            End )
+       And  /*FILTER_START*/ (1=1) /*FILTER_END*/
+       /*KEYWORD_START*/ And Det.Id = :V_Keyword /*KEYWORD_END*/
+	

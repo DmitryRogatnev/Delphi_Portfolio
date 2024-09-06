@@ -1,0 +1,16 @@
+/*Список значений параметоров*/
+---------------------
+/*BeginColumns
+Param_Value
+EndColumns*/
+
+/*BeginColumns
+Значение
+EndColumns*/
+--------------------
+
+Select t.Id,
+       t.Param_Value Param_Value
+From   Ogt.Tp_Time_Params_Vl t
+Where  /*BeginFilter*/ (1=1) /*EndFilter*/
+       /*BeginKeyword*/And (t.Param_Id = :V_Keyword) /*EndKeyword*/

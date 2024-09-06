@@ -1,0 +1,19 @@
+/*Список материалов для составных материалов*/
+---------------------
+/*COLUMNS_START
+<0>Nrm_Item_Code</0><1>Nrm_Item_Name</1><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Код</0><1>Наименование</1><end>
+TITLES_END*/
+--------------------
+
+select t.Id_Comp_Mat Nrm_Item_Id,
+       t.Kodm_Comp_Mat Nrm_Item_Code,
+			 t.Name_Comp_Mat Nrm_Item_Name,
+			 '<норма составного материала>*'||'('||Rtrim(To_Char((t.Procent), 'fm99999990.9999'), '.' )||'/100)' Forml_Val,
+			 'spr_matx' Nrm_Item_Source,
+       'comp_mat' Nrm_Item_Type
+from   Ogt.v_Spr_Matx_Komp t
+Where  /*FILTER_START*/ (1=1) /*FILTER_END*/ 

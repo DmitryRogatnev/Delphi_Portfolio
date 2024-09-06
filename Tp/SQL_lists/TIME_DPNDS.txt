@@ -1,0 +1,22 @@
+/*Список названий параметров для расчета*/
+---------------------
+/*BeginColumns
+Depends_Flag_Name
+EndColumns*/
+
+/*BeginTitles
+Зависит от
+EndTitles*/
+--------------------
+Select ( Case Rownum
+           When 1 Then 'param'
+           When 2 Then 'value'
+         End ) Depends_Flag,
+       ( Case Rownum
+           When 1 then 'Значиния др. параметра'
+           When 2 then 'Значeния параметра'
+         End ) Depends_Flag_Name
+From   Dual
+Connect By Level < 3
+Where  /*BeginFilter*/ (1=1) /*EndFilter*/
+	

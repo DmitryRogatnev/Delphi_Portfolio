@@ -1,0 +1,16 @@
+/*Список видов работ*/
+---------------------
+/*BeginColumns
+Work_Type_Name
+EndColumns*/
+
+/*BeginTitles
+Вид работ
+EndTitles*/
+--------------------
+Select t.Num Work_Type_Id,
+       t.Num_Gr_Vid_Rab,
+       t.Name_Gr_Vid_Rab,
+       '('||t.Num_Gr_Vid_Rab||') '||Decode( t.Num_Gr_Vid_Rab, '00', 'БЕЗ УКАЗАНИЯ', t.Name_Gr_Vid_Rab ) Work_Type_Name
+From   Ogt.SPR_GR_VID_RAB t
+Where  /*BeginFilter*/ (1=1) /*EndFilter*/

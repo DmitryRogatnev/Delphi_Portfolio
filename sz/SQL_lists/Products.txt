@@ -1,0 +1,19 @@
+/*Список продуктов*/
+---------------------
+/*BeginColumns
+Item_Code;Item_Num;Item_New_Num;Item_Name
+EndColumns*/
+
+/*BeginTitles
+Код;Чертежный №;Чертежный №(нов.);Наименование
+EndTitles*/
+--------------------
+Select *
+From(
+  Select t.Kd Item_Code,
+         t.Nom Item_Num,
+         t.Naim Item_Name,
+	 t.New_Nom Item_New_Num
+  From   Sveta.M08 t
+  Where  Nvl( t.Snpr, 10 ) <> 0) a
+Where /*BeginFilter*/ (1=1) /*EndFilter*/

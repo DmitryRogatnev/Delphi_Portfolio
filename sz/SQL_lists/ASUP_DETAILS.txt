@@ -1,0 +1,67 @@
+/*Список деталей/материалов/комплектующих ОАСУПиИТ*/
+---------------------
+/*COLUMNS_START
+<0>Item_Code</0><1>Item_Num</1><2>Item_Name</2><3>Item_Type_Name</3><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Код</0><1>Шифр</1><2>Наименование</2><3>Вид</3><end>
+TITLES_END*/
+--------------------
+
+Select s.*,
+       t.Item_Type_Name
+From
+	(Select t.kod Item_Code,
+				 t.Nsr||' '||t.Gost Item_Num,
+				 Upper(Substr(t.Nmat, 0, 1))||Lower(Substr(t.Nmat, 2)) Item_Name,
+				 (Case
+						When t.bal is Not Null Then (Case
+																					 When t.bal='10/1' Then 'material'
+																					 When t.bal='10/2' Then 'components'
+																				 End)
+						When t.bal is Null Then (Case
+																			 When Substr(t.Kod, 0, 1)='8' Then 'components'
+																			 Else 'material'
+																		 End)
+					End) Item_Type,
+		u.Id_Unit Item_Units,
+		u.Unit_SName Item_Unit_Name,
+		'SVETA.M22' Item_Source
+	From   sveta.m22 t
+	Left   Join Stp.v_Spr_Units u
+	On     u.unit_Code=t.kei
+				 And Nvl(u.Date_Expitation, Sysdate) <= Sysdate
+
+	Union All
+
+	Select t.Kd,
+				 t.Nom,
+				 t.Naim,
+					(Case
+									When Assembl_Flag is Not Null
+									Then 'assembly'
+                                                                          Else (Case
+                                                                                  When Substr(t.Kd, 0, 1)='8' Then 'fastening'
+                                                                                  Else 'detail'
+                                                                                End)
+					End) Item_Type,
+		u.Id_Unit Item_Units,
+		u.Unit_SName Item_Unit_Name,
+		'SVETA.M08'
+	From   Sveta.M08 t
+	Left   Join (Select Distinct a.ki Assembl_Flag
+							 From   Sveta.m06 a
+							 Where  kfk in (0, 2)) n
+	On n.Assembl_Flag = t.kd
+	Left   Join Stp.v_Spr_Units u
+	On     u.Id_Unit = 8
+				 And Nvl(u.Date_Expitation, Sysdate) <= Sysdate
+	Where  Nvl( t.Snpr, 10 ) <> 0) s
+Left Join Stp.v_Doc_Spc_Item_Types t
+On   t.Item_Type_Id=s.Item_Type
+Where /*FILTER_START*/ (1=1) /*FILTER_END*/
+        /*KEYWORD_START*/ And ( Upper(s.Item_Code) like '%'||Upper(:V_Keyword)||'%'
+        Or Upper(s.Item_Num) like '%'||Upper(:V_Keyword)||'%'
+        Or Upper(s.Item_Name) like '%'||Upper(:V_Keyword)||'%' ) /*KEYWORD_END*/
+Order By s.Item_Code

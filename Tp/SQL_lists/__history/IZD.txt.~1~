@@ -1,0 +1,18 @@
+/*Список изделий*/
+---------------------
+/*COLUMNS_START
+<0>Izd</0><1>Izd_Nd</1><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Наименование</0><1>Обозначение</1><end>
+TITLES_END*/
+--------------------
+Select t.Id Id_Izd,
+       t.Izd Izd,
+       t.Nd_Izd Izd_Nd
+From   Ogt.Spr_Izd_Txt t 
+Where  t.Arhiv = 1
+       And/*FILTER_START*/ (1=1) /*FILTER_END*/
+       /*KEYWORD_START*/And Upper(t.Izd) like '%'||Upper(:V_Keyword)||'%' /*KEYWORD_END*/
+	

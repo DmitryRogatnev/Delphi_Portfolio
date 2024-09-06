@@ -1,0 +1,20 @@
+/*Список состава сборки*/
+---------------------
+/*COLUMNS_START
+<0>Code_Ceh</0><1>Name_Vidrab</1><2>Mat_Name</2><3>Norma_Min</3><4>Ed_Name</4><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Цех</0><1>Вид работ</1><2>Наименование</2><3>Норма расх.</3><4>Ед. изм.</4><end>
+TITLES_END*/
+--------------------
+Select Id_Mat Mat_Id, 
+       a.Code_Ceh, 
+       a.Name_Mat Mat_Name, 
+       a.Norma Norma_Min, 
+       a.Id_Ed Ed_Id, 
+       a.Code_Ed Ed_Name, 
+       a.Name_Vidrab 
+From   Ogt.V_Norm_Mat a
+Where  /*FILTER_START*/ (1=1) /*FILTER_END*/
+	

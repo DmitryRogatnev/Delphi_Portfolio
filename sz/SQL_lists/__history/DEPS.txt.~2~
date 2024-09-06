@@ -1,0 +1,33 @@
+/*Список подразделений*/
+---------------------
+/*COLUMNS_START
+<0>Dep_Code</0><1>Type_Name</1><2>Dep_Sname</2><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Код</0><1>Тип</1><2>Наименование</2><end>
+TITLES_END*/
+--------------------
+
+Select Dep.id_dep,
+       Dep.dep_Id, 
+       Dep.Id_dep_Full, 
+       Dep.dep_Type_Id, 
+       D_Type.Type_Name, 
+       Dep.Dep_Code, 
+       Dep.Dep_Sname, 
+       Dep.Dep_FName, 
+       M_Dep.Dep_Code M_Dep_Code, 
+       M_Dep.Dep_Sname M_Dep_Sname, 
+       M_Dep.Dep_FName M_Dep_Fname 
+From   Stp.V_Deps Dep 
+Left   Join Stp.v_Dep_Types D_Type 
+On     D_Type.Id_dep_Type = Dep.dep_Type_Id 
+Left   Join( Select a.*  
+             From Stp.v_Deps a 
+             Where  Nvl(a.Date_Expitation, Sysdate) >= Sysdate) M_Dep 
+             On     Dep.dep_Id = M_Dep.id_dep 
+Where  Nvl(Dep.Date_Expitation, Sysdate) >= Sysdate 
+       And /*FILTER_START*/ (1=1) /*FILTER_END*/ 
+        /*KEYWORD_START*/ And ( Upper(Dep.Dep_Code) like '%'||Upper(:V_Keyword)||'%'
+        Or Upper(Dep.Dep_Sname) like '%'||Upper(:V_Keyword)||'%') /*KEYWORD_END*/

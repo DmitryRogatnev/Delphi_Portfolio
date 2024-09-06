@@ -1,0 +1,17 @@
+/*Список подписанных ступеней*/
+---------------------
+/*COLUMNS_START
+<0>Point_Name</0><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Ступень</0><end>
+TITLES_END*/
+--------------------
+
+Select p.Id_Doc_Rout_Point,
+       P.Point_Name
+From   Src.v_Doc_Rout_Points p 
+Where  /*FILTER_START*/ (1=1) /*FILTER_END*/
+       And p.Stp_Doc_Resolution_Result_Id Is Not Null
+	

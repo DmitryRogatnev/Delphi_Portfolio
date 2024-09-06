@@ -1,0 +1,20 @@
+/*Список цехов*/
+---------------------
+/*COLUMNS_START
+<0>Ceh_Code</0><1>Ceh_Sname</1><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Код</0><1>Наименование</1><end>
+TITLES_END*/
+--------------------
+
+Select t.Ceh_Id Id_Ceh, 
+       t.Dep_Id, 
+       t.Ceh_Code, 
+       t.Ceh_Sname 
+From   Ogt.V_Spr_Ceh t
+Where  /*FILTER_START*/ (1=1) /*FILTER_END*/
+       /*KEYWORD_START*/And ( Upper(t.Ceh_Code) like '%'||Upper(:V_Keyword)||'%'
+                              Or Upper(t.Ceh_Sname) like '%'||Upper(:V_Keyword)||'%') /*KEYWORD_END*/
+	

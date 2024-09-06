@@ -1,0 +1,16 @@
+/*Список значений параметоров*/
+---------------------
+/*COLUMNS_START
+<0>VL_CH_PRM</0><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Значение</0><end>
+TITLES_END*/
+--------------------
+Select t.*,
+       t.VL_CH_PRM
+From   Ogt.V_TP_OP_PRM_CH_PRM_LINK t
+Where  /*FILTER_START*/ (1=1) /*FILTER_END*/
+       /*KEYWORD_START*/ And Upper(t.Vl_Ch_Prm) like Upper(:V_Keyword)||'%' /*KEYWORD_END*/
+	

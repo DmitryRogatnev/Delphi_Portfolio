@@ -1,0 +1,16 @@
+/*Список уникальных значений элементов*/
+---------------------
+/*COLUMNS_START
+<0>Rep_Doc_Item_Text</0><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Значение</0><end>
+TITLES_END*/
+--------------------
+
+Select Distinct t.Rep_Doc_Item_Text
+From   Src.v_Repair_Docs_Aes_Items t
+Left   Join Src.v_Repair_Doc_Aes i
+On     i.DOC_HEADER_ID=t.Doc_Header_Id
+Where  /*FILTER_START*/ (1=1) /*FILTER_END*/

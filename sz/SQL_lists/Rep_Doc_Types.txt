@@ -1,0 +1,16 @@
+/*Список типов документов*/
+---------------------
+/*COLUMNS_START
+<0>Rep_Doc_Type_Name</0><1>Rep_Doc_Type_FullName</1><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Тип документа</0><1>Полное наименование документа</1><end>
+TITLES_END*/
+--------------------
+
+Select t.* 
+From Stp.v_Repair_Doc_Types t
+Where  /*FILTER_START*/ (1=1) /*FILTER_END*/        
+       /*KEYWORD_START*/ And ( Upper(t.Rep_Doc_Type_Name) like Upper(:V_Keyword)
+        Or Upper(t.Rep_Doc_Type_FullName) like Upper(:V_Keyword)) /*KEYWORD_END*/

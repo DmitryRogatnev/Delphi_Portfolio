@@ -1,0 +1,15 @@
+/*Список условий*/
+---------------------
+/*COLUMNS_START
+<0>Point_Condit_Mean</0><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Условие</0><end>
+TITLES_END*/
+--------------------
+
+Select t.Id_Point_Condit,
+       t.Point_Condit_Mean
+From   Stp.V_Doc_Spc_Txt_Point_Condit t
+Where  /*FILTER_START*/ (1=1) /*FILTER_END*/

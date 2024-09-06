@@ -1,0 +1,16 @@
+/*Список названий параметров для расчета*/
+---------------------
+/*COLUMNS_START
+<0>Name_Param</0><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Параметр</0><end>
+TITLES_END*/
+--------------------
+Select t.Id_Row_Param, 
+       t.Name_Param, 
+       t.Type_Param 
+From   Ogt.V_TP_OK_OPER_PARAMS_LIST t
+Where  /*FILTER_START*/ (1=1) /*FILTER_END*/
+	

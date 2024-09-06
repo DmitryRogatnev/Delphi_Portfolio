@@ -1,0 +1,22 @@
+/*Список названий коэфф. для расчета*/
+---------------------
+/*COLUMNS_START
+<0>Coeff_Flag_Name</0><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Коэффициент</0><end>
+TITLES_END*/
+--------------------
+Select ( Case Rownum 
+           When 1 Then 'unit_time'
+           When 2 Then 'oper_time'
+         End ) Coeff_Flag, 
+       ( Case Rownum 
+           When 1 then '% от Т шт.'
+           When 2 then '% от Т оп.'
+         End ) Coeff_Flag_Name
+From   Dual
+Connect By Level < 3
+Where  /*FILTER_START*/ (1=1) /*FILTER_END*/
+	

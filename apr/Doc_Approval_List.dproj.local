@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.879,C:\Users\asup-49\Documents\Embarcadero\Studio\Projects\Dc_Aprvl_L_Main_Form.dfm=C:\Users\asup-49\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.558,C:\acd\Source\Delphi\Project\Doc_Approval_List\Dc_Aprvl_Lst_Main_Form.dfm=C:\acd\Source\Delphi\Project\Doc_Approval_List\Dc_Aprvl_L_Main_Form.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.808,C:\Users\asup-49\Documents\Embarcadero\Studio\Projects\Doc_Approval_List\Doc_Approval_List.dproj=C:\Users\asup-49\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.316,C:\Users\asup-49\Documents\Embarcadero\Studio\Projects\Doc_Approval_List\Dc_Aprvl_L_Main_Form.dfm=C:\Users\asup-49\Documents\Embarcadero\Studio\Projects\Dc_Aprvl_L_Main_Form.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.316,C:\Users\asup-49\Documents\Embarcadero\Studio\Projects\Doc_Approval_List\Dc_Aprvl_L_Main_Form.pas=C:\Users\asup-49\Documents\Embarcadero\Studio\Projects\Dc_Aprvl_L_Main_Form.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.733,C:\acd\Source\Delphi\Project\Doc_Approval_List\Unit1.dfm=C:\acd\Source\Delphi\Project\Doc_Approval_List\Dc_Aprvl_Lst_Setup_Form.dfm</Transaction>
+  </Transactions>
+</BorlandProject>

@@ -1,0 +1,56 @@
+/*Список ступеней для подписания*/
+---------------------
+/*COLUMNS_START
+<0>Ceh_Code</0><1>Appr_Step_Name</1><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Цех</0><1>Наименование ступени</1><end>
+TITLES_END*/
+--------------------
+Select * 
+From ( Select a.Ceh_Code, 
+       	      a.Appr_Step_Name, 
+              a.Stp_Id_Doc_Rout_Point,
+              a.Ceh_Id,
+              a.Dep_Id, 
+              a.Id_Doc_Tp, 
+              a.Doc_Header_Id 
+       From   Ogt.V_Spr_Tp_Doc_Appr a 
+       Where  a.Flag_In = 1 
+              And a.Flag_Out <> 2 
+              And ( a.Ceh_Code||a.Appr_Step In ( Select ( Case 
+                                                When t.dep_Mmbr_Pstn_Id = 1 
+                                                     Or t.dep_Mmbr_Pstn_Id = 2 Then Dep.Dep_Code||'004'
+                          			When t.dep_Mmbr_Pstn_Id = 203 Then Dep.Dep_Code||'002' 
+                          			When t.dep_Mmbr_Pstn_Id = 202 Then Dep.Dep_Code||'003' 
+                          			When t.dep_Mmbr_Pstn_Id = 204 Then Dep.Dep_Code||'005'
+                          			When t.dep_Mmbr_Pstn_Id = 221 Then Dep.Dep_Code||'008' 
+                          			When t.dep_Mmbr_Pstn_Id = 201 
+                            				And Dep.Id_Dep = a.Dep_Id 
+                          			Then Dep.Dep_Code||'006' 
+					      End ) 
+                          	     From   STP.V_DEP_MMBRS t 
+                          	     Left   Join Stp.v_Deps Dep 
+                          	     On     Dep.id_dep = t.dep_Id 
+                          	     Where  t.User_Id = User ) 
+               Or ( Stp.Pkg_User.F_Check_Program_Param( In_Object_Id => 8784, 
+                          In_Parametr => 'ADMIN',
+                          In_Value => '1' ) = 1 )) 
+	Union All
+
+
+	Select a.Ceh_Code, 
+               a.Appr_Step_Name, 
+               Nvl( a.Stp_Id_Doc_Rout_Point, 0 ), 
+               a.Ceh_Id, 
+               Nvl( a.Dep_Id, 0 ), 
+               a.Id_Doc_Tp, 
+               a.Doc_Header_Id 
+        From   Ogt.V_Spr_Tp_Doc_Appr a 
+        Where  a.Flag_In = 1 
+               And a.Appr_Step = '001'
+               And a.Flag_Out = 0  ) 
+Where  /*FILTER_START*/ (1=1) /*FILTER_END*/
+      /*KEYWORD_START*/ And Doc_Header_Id = :V_Keyword /*KEYWORD_END*/
+	

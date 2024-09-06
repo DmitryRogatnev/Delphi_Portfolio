@@ -1,0 +1,32 @@
+/*Список параметров для формул расчета норм*/
+---------------------
+/*COLUMNS_START
+<0>Name_Param</0><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Наименование параметра</0><end>
+TITLES_END*/
+--------------------
+
+Select t.Frml_Mat_Rw_Id,
+       t.Param_row_id,
+       prm_i.Name_Param,
+       (Case
+          When pm.Param_Value Is Not Null
+          Then To_Number(pm.Param_Value)
+          Else Null
+        End) as Param_Value,
+       (Case
+          When pm.Param_Value Is Not Null
+          Then 'mat'
+          Else 'other'
+        End) as ParamOrigin
+From   Ogt.v_spr_matx_frml_params t
+Join   Ogt.v_Tp_Ok_Oper_Params_List prm_i
+On     prm_i.Id_Row_Param = t.Param_row_id
+Left   Join Ogt.v_Spr_Matx_Params pm
+On     pm.Mat_Row_Id = t.Mat_Id
+       And pm.Param_Row_Id = t.Param_Row_Id
+Where  t.Rw_State = 'current_version'
+       And /*FILTER_START*/ (1=1) /*FILTER_END*/

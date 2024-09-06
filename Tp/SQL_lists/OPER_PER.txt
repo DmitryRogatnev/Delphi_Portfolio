@@ -1,0 +1,14 @@
+/*Список переходов*/
+---------------------
+/*BeginColumns Per EndColumns*/
+
+/*BeginTitles Переходы EndTitles*/
+--------------------
+
+Select  Trim( t.Per ) Per,
+	Oper.Oper_Id 
+From    Ogt.V_Tp_Ok_Per_Dlp t 
+Left    Join Ogt.v_Tp_Ok_Dlp Oper 
+On      Oper.Id_Row_Oper = t.Id_Row_Oper 
+Where   /*BeginFilter*/ (1=1) /*EndFilter*/
+	 

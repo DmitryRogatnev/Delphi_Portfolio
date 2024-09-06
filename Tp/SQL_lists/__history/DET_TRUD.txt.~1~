@@ -1,0 +1,45 @@
+/*Список названий параметров для расчета*/
+---------------------
+/*COLUMNS_START
+<0>CODE_PROF</0><1>NAME_PROF</1><2>RAZR_PROF</2><3>KVN_PROF</3><4>MONEY_PROF</4><5>TIME</5><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Код</0><1>Наименование</1><2>Разряд</2><3>Код условий</3><4>Расценка, руб.</4><5>Норма, н/ч</5><end>
+TITLES_END*/
+--------------------
+Select Norm.*, 
+       Prof.Profpoln NAME_PROF 
+From   ( Select a.M05ID Id_Using_Norm, 
+                a.Kd, 
+                a.NC, 
+                a.Kodprof CODE_PROF, 
+                a.Razr RAZR_PROF, 
+                a.Money MONEY_PROF, 
+                a.Kvn KVN_PROF, 
+                a.Time 
+         From   Sveta.M05 a 
+         
+         Union All 
+         
+         Select 0,
+                a.Kd, 
+                a.NC, 
+                a.Kodprof, 
+                a.Razr, 
+                a.Money, 
+                a.Kvn, 
+                Sum(a.Time) 
+         From   Sveta.M05_Otk a 
+         -- Where  a.Proc in (0) 
+         Group  By a.NC, 
+                a.Kd, 
+                a.Kodprof, 
+                a.Razr, 
+                a.Money, 
+                a.Kvn ) Norm 
+Left   Join Sveta.M26 Prof 
+On     Prof.Kodprof = Norm.CODE_PROF
+Where  /*FILTER_START*/ (1=1) /*FILTER_END*/
+       /*KEYWORD_START*/And (Upper(Norm.CODE_PROF) Like '%'||Upper(:V_Keyword)||'%' 
+                             Or Upper(Prof.Profpoln) Like '%'||Upper(:V_Keyword)||'%') /*KEYWORD_END*/

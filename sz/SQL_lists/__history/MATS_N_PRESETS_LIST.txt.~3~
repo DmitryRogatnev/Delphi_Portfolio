@@ -1,0 +1,51 @@
+/*Список материалов и пресетов КТО*/
+---------------------
+/*COLUMNS_START
+<0>Nrm_Item_Code</0><1>Nrm_Item_Name</1><2>Nrm_Item_Type_Name</2><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Код</0><1>Наименование</1><2>Тип</2><end>
+TITLES_END*/
+--------------------
+
+Select t.*
+From
+(Select m.Id_Mat Nrm_Item_Id,
+        m.Name_Mat Nrm_Item_Name,
+  Nvl(m.Kodm_Mat, '0000000')  Nrm_Item_Code,
+  m.Id_Mat_Group,
+  m.Id_Profil,
+  m.Id_Marka,
+  'spr_matx' Nrm_Item_Source,
+  (Case
+     When c.Comp_Count Is Not Null Then 'assembl_mat'
+     Else 'mat'
+  End) Nrm_Item_Type,
+  (Case
+     When c.Comp_Count Is Not Null Then 'Составной материал'
+     Else 'Материал'
+  End) Nrm_Item_Type_Name,
+  m.Code_Ed Unit_Code,
+From   Ogt.v_Spr_Materials m
+Left   Join (Select b.Id_Main_Mat, Count(b.Id) Comp_Count
+             From   Ogt.V_Spr_Matx_Komp b
+             Group  By b.Id_Main_Mat) c
+On     c.Id_Main_Mat = m.Id_Mat
+
+Union All
+
+Select a.Id_Rw_Mat_Preset,
+       a.Preset_Name,
+       Trim(To_Char(a.Id_Rw_Mat_Preset, '99999990000000')),
+       0,
+       0,
+       0,
+       'spr_matx_presets',
+       'preset',
+       'Пресет',
+       Null
+From   Ogt.v_Spr_Matx_Presets a ) t
+Where  /*FILTER_START*/ (1=1) /*FILTER_END*/
+       /*KEYWORD_START*/ And ( Upper(t.Nrm_Item_Code) like '%'||Upper(:V_Keyword)||'%'
+        Or Upper(t.Nrm_Item_Name) like '%'||Upper(:V_Keyword)||'%') /*KEYWORD_END*/

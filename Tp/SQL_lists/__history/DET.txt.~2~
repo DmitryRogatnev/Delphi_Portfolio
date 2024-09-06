@@ -1,0 +1,21 @@
+/*Список деталей*/
+---------------------
+/*BeginColumns
+DET_NUM;DET_NAME;MAR
+EndColumns*/
+
+/*BeginTitles
+Шифр;Наименование;Маршрут
+EndTitles*/
+--------------------
+
+Select t.Det DET_NUM, 
+       t.Id Id_Det, 
+       t.Nd DET_NAME, 
+       t.Mar MAR, 
+       Ogt.Asup_Ogt.Kd_Asup_Min(v_det => t.Det) DET_KODD 
+From   Ogt.SPR_DET_TXT t
+Where  /*BeginFilter*/ (1=1) /*EndFilter*/
+       /*BeginKeyword*/And ( Translate(Upper(t.Det), '.-', '%') Like '%'||Translate(Upper(:V_Keyword), '.-', '%')||'%'
+                              Or Upper(Nvl(t.Nd, 0)) like '%'||Upper(:V_Keyword)||'%') /*EndKeyword*/
+	

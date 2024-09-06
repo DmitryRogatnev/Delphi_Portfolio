@@ -1,0 +1,7 @@
+Join (  Select p.Doc_Rout_Id
+From   Src.Doc_Rout_Points p
+Where  p.Result_User_Id=User
+       And p.Result_User_Id_Add=Stp.Pkg_User.F_Get_User_Add_Id
+Group  By p.Doc_Rout_Id) p
+On p.Doc_Rout_Id=t.Doc_Header_Id
+Where (1=1)

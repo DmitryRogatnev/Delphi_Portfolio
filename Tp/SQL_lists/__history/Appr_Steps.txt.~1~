@@ -1,0 +1,18 @@
+/*Список цехов*/
+---------------------
+/*COLUMNS_START
+<0>Dep_Sname</0><1>Point_User_Name</1><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Цех</0><1>Наименование</1><end>
+TITLES_END*/
+--------------------
+select t.* 
+from   Stp.V_DOC_ROUT_POINT_POS t
+left   join Stp.v_Deps d
+On     d.id_dep=t.Dep_Id
+       and Nvl(d.Date_Expitation, Sysdate) >= Sysdate
+Where  /*FILTER_START*/ (1=1) /*FILTER_END*/
+       And t.Doc_Type_Id='TECH_PROC'
+	

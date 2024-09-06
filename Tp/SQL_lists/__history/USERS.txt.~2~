@@ -1,0 +1,31 @@
+/*Список пользователей*/
+---------------------
+/*BeginColumns
+EMP_FIO;Profession
+EndColumns*/
+
+/*BeginTitles
+Ф.И.О.;Должность
+EndTitles*/
+--------------------
+
+Select Usr.Id_User,
+       Usr.Emp_Fio, 
+       Usr.Emp_Id, 
+       Usr.Dep_Id, 
+       Dep.Dep_Code, 
+       Ceh.Ceh_Id, 
+       Emp.Profession, 
+       Phn.Tphone || Case When Phn.Tphone2 <> '  -  ' Then ' (' || Phn.Tphone2 || ')' Else Null End Phone 
+From   Stp.v_Users Usr 
+Join   Src.v_Emps Emp 
+On     Emp.Id_Emp = Usr.Emp_Id 
+Left   Join Stp.v_Deps Dep 
+On     Dep.id_dep = Usr.Dep_Id 
+Left   Join Ogt.v_Spr_Ceh Ceh
+On     Ceh.Ceh_Code = Dep.dep_Code
+Left   Join PERS.Spr_Phone Phn
+On     Usr.Emp_Id = Phn.Lnum
+Where  /*BeginFilter*/ (1=1) /*EndFilter*/
+       /*BeginKeyword*/ And Upper( t.Emp_Fio ) Like '%'||Upper( :V_Keyword )||'%' /*EndKeyword*/
+	 

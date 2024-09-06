@@ -1,0 +1,15 @@
+/*Список примечаний к операциям ведомостей*/
+---------------------
+/*COLUMNS_START
+<0>Prim</0><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Примечание</0><end>
+TITLES_END*/
+--------------------
+Select Distinct Trim( t.Prim ) Prim 
+From   Ogt.V_TP_GKTTP_OPER_DLP t 
+Where  t.Prim Is Not Null
+       And /*FILTER_START*/ (1=1) /*FILTER_END*/
+	

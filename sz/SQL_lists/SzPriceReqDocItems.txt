@@ -1,0 +1,22 @@
+/*Список деталей/материалов/комплектующих ОАСУПиИТ*/
+---------------------
+/*COLUMNS_START
+<0>Item_Code</0><1>Item_Num</1><2>Item_Name</2><3>EMP_FIO</3><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Код</0><1>Чертежный №</1><2>Наименование</2><3>Исполнитель</3><end>
+TITLES_END*/
+--------------------
+
+Select /*BeginFields*/t.*, i.*, u.Emp_Fio, dep.Dep_Code, dep.Dep_Sname/*EndFields*/
+From   Src.v_Sz_Price_Request t
+Join   Mrk.v_Sz_Price_Req_Items i
+On     i.Sz_Price_Req_Id=t.Id_SZ_PRICE_REQ
+Left   Join Stp.v_Users u
+On     u.Id_User=i.i_User
+       And u.Id_User_Add=i.I_User_Add
+Left   Join Stp.V_Deps dep
+On     Dep.Id_Dep=t.Sz_Dep_Id
+       And Nvl(Dep.Date_Expitation, Sysdate)>=Sysdate
+/*BeginFilter*/ Where (1=1) /*EndFilter*/

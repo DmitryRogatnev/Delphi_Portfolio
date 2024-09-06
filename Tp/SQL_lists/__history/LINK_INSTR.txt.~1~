@@ -1,0 +1,15 @@
+/*Список подписанных ступеней*/
+---------------------
+/*COLUMNS_START
+<0>CHLD_INSTR_FULL_NAME</0><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Наименование дочерних инструментов</0><end>
+TITLES_END*/
+--------------------
+
+Select t.*  
+From   Skl.V_Spr_Instr_Links t 
+Where  /*FILTER_START*/ (1=1) /*FILTER_END*/
+	

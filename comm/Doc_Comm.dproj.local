@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.916,C:\Users\asup-49\Documents\Embarcadero\Studio\Projects\Doc_Comm\Dc_Comm_MainForm.pas=C:\Users\asup-49\Documents\Embarcadero\Studio\Projects\Dc_Comm_MainForm.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.030,C:\Users\asup-49\Documents\Embarcadero\Studio\Projects\Dc_Comm_MainForm.dfm=C:\Users\asup-49\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.389,C:\Users\asup-49\Documents\Embarcadero\Studio\Projects\Doc_Comm\Doc_Comm.dproj=C:\Users\asup-49\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.571,C:\acd\Source\Delphi\Project\Doc_Comm\Dc_Comm_FilesForm.dfm=C:\acd\Source\Delphi\Project\Doc_Comm\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.958,C:\acd\Source\Delphi\Project\Doc_Comm\Dc_Comm_FilesDdForm.dfm=C:\acd\Source\Delphi\Project\Doc_Comm\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.916,C:\Users\asup-49\Documents\Embarcadero\Studio\Projects\Doc_Comm\Dc_Comm_MainForm.dfm=C:\Users\asup-49\Documents\Embarcadero\Studio\Projects\Dc_Comm_MainForm.dfm</Transaction>
+  </Transactions>
+</BorlandProject>

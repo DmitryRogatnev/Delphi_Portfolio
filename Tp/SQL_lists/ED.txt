@@ -1,0 +1,14 @@
+/*Список изделий*/
+---------------------
+/*BeginColumns Ed_Code;Ed_Naim EndColumns*/
+
+/*BeginTitles Код;Наименование EndTitles*/
+--------------------
+Select t.Id Id_Ed,
+       t.Ed Ed_Code,
+       t.Ed_Naim Ed_Naim
+From Ogt.Spr_Ed t
+Where  /*BeginFilter*/ (1=1) /*EndFilter*/
+       /*BeginKeyword*/And (Translate (Upper( t.ED_NAIM ), ' .-', '%') Like '%'||Translate(Upper(:V_Keyword), ' .-*', '%')||'%'
+                             Or Upper(t.Ed) like '%'||Upper(:V_Keyword)||'%') /*EndKeyword*/
+	

@@ -1,0 +1,36 @@
+/*Список пользователей программы*/
+---------------------
+/*BeginColumns
+Emp_Fio;Profession
+EndColumns*/
+
+/*BeginTitles
+Ф.И.О.;Должность
+EndTitles*/
+--------------------
+Select u.Id_User,
+       u.Id_User_Add,
+			 u.Emp_Id,
+			 e.Emp_Fio,
+			 e.Emp_Iof,
+			 e.Emp_Surname,
+			 e.Emp_Name,
+			 e.Emp_Patronymic,
+			 e.Profession
+From   Stp.v_Users u
+Left   Join Src.v_Emps e
+On     e.Id_Emp=u.Emp_Id
+Join   ( Select g.User_Id
+From   Stp.V_Menu_Nodes n
+Left   Join Stp.V_Objects d
+On     n.Object_Id = d.Id_Object
+Left   Join (Select Gn.Menu_Node_Id,
+                    g.User_Id
+             From   Stp.V_Group_Menu_Nodes_All Gn,
+                    Stp.V_Groups      g
+             Where  Gn.Group_Id = g.Id_Group) g
+On     n.Id_Menu_Node = g.Menu_Node_Id
+Where  d.Id_Object=7184) o
+On  o.User_Id=u.Id_User
+    and u.Act_Status=1
+/*BeginFilter*/ Where  (1=1) /*EndFilter*/

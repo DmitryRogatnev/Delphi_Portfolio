@@ -1,0 +1,35 @@
+/*Список видов работ*/
+---------------------
+/*COLUMNS_START
+<0>Norm_Iterm_Wrk_Type_Name</0><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Наименование</0><end>
+TITLES_END*/
+--------------------
+
+Select t.Id Norm_Item_Wrk_Type,
+       t.Vidrab Norm_Item_Wrk_Type_Name,
+			 d.dep_Code,
+			 d.Dep_SName
+From   Ogt.v_Spr_Vidrab t
+Join   Stp.v_Deps d
+On     (Case
+          When t.id = 1 And d.id_dep = 764 Then 1
+					When t.Id = 2 And d.id_dep = 822 Then 1
+				  When t.id = 3 And d.id_Dep = 823 Then 1
+					When t.Id = 4 And d.id_dep = 824 Then 1
+					When t.Id = 5 And d.id_dep = 825 Then 1
+					When t.Id = 6 And d.id_dep = 602 Then 1
+					When t.Id = 7 And d.id_dep = 603 Then 1
+			    When t.Id = 11 And d.id_dep = 605 Then 1
+					Else 0
+        End) = 1
+				And Nvl(d.Date_Expitation, Sysdate) <= Sysdate
+Where  pkg_tp_doc.f_find_user_in_dep(v_user_id => User,
+                                           v_dep_id => d.Id_Dep) = 1
+			 or Stp.Pkg_User.F_Check_Program_Param ( In_Object_Id => 11965, 
+                                               In_Parametr => 'ADMIN',
+                                               In_Value => '1' ) = 1
+	And /*FILTER_START*/ (1=1) /*FILTER_END*/ 

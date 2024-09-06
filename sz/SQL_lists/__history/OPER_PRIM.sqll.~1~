@@ -1,0 +1,12 @@
+Select *
+From   ( Select
+         Distinct Trim(t.Prim) Prim
+         From   Ogt.V_Tp_Ok_Dlp t
+         Where  t.Prim Is Not Null
+
+         Union All
+
+         Select
+         Distinct Trim(t.Prim) Prim
+         From   Ogt.Tp_Ok_Txt t
+         Where  t.Prim Is Not Null )

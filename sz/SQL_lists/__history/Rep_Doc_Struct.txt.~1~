@@ -1,0 +1,13 @@
+/*Список секций структуры*/
+---------------------
+/*COLUMNS_START
+<0>Rep_Doc_Section_SName</0><1>Rep_Doc_Setion_Caption</1><end>
+COLUMNS_END*/
+
+/*TITLES_START
+<0>Сокрщанное наименование</0><1>Наименованеие</1><end>
+TITLES_END*/
+--------------------
+Select t.*
+From   Stp.V_REPAIR_DOC_TYPE_STRUCT t
+Where  /*FILTER_START*/ (1=1) /*FILTER_END*/

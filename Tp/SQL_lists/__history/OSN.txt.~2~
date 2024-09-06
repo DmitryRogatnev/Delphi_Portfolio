@@ -1,0 +1,19 @@
+/*Список оснастки*/
+---------------------
+/*BeginColumns
+Num_Osn;Name_Osn
+EndColumns*/
+
+/*BeginTitles
+Шифр;Наименование
+EndTitles*/
+--------------------
+Select t.Id Id_Osn,
+       t.Shosn Num_Osn,
+       t.Nosn Name_Osn
+From   Ogt.Spr_Osn_Txt t
+Where  Nvl( t.An_Txt, '1' ) = '1'
+       And /*BeginFilter*/ (1=1) /*EndFilter*/
+       /*BeginKeyword*/And (Upper(t.Shosn) like '%'||Upper(:V_Keyword)||'%'
+                             Or Upper(t.Nosn) like '%'||Upper(:V_Keyword)||'%') /*EndKeyword*/
+	
